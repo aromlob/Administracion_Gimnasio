@@ -1,0 +1,18 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 33308,
+            "driver": "MySQL",
+            "name": "gym",
+            "database": "gym",
+            "username": "root",
+            "password": "jkb8kvhgcvhj7"
+        }
+    ]
+}
