@@ -1,3 +1,4 @@
+asdad
 CREATE TABLE `cliente` (
     `Id` int(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `nombre` varchar(50) NOT NULL,
