@@ -32,7 +32,6 @@ ADMINER_PORT=8184
 SERVICE_PORT=8000
 ```
 
-
 #### Docker-compose:
 
 Para generar el docker compose nos hemos ido a la pagina de **docker-hub ([docker_hub_adminer](https://hub.docker.com/_/adminer/))**  y hemos utilizado el servidor de **admine.** El docker sirve para crear un servidor local en el cual, en este caso se almacena la base de datos:
@@ -70,7 +69,6 @@ Para lanzar el servidor es necesario ejecutar el siguiente comando, estando en l
 docker-compose up -d
 ```
 
-
 #### Carpeta script:
 
 En ella se va a encontrar un archivo **sql**, que en nuestro caso se llama **db.sql,** el cual contiene la base de datos necesaria para realizar el proyecto.
@@ -94,8 +92,7 @@ CREATE TABLE `cliente` (
 );
 ```
 
-
-* EL segundo que hemos creado sería la tabla **entrenador**, la cual va a tener los siguientes atributos:
+* La segunda que hemos creado sería la tabla **entrenador**, la cual va a tener los siguientes atributos:
   * **Id entrenador :** Es un **número entero**, que se **autoincrementa** por defecto y es la **clave primaria**.
   * **nombre :** Es una **cadena** de caracteres y no puede estar vacia por lo que se le pone **not null.**
   * **especialidad :** Es de tipo enum el cual va a contener las siguientes opciones:
@@ -115,5 +112,64 @@ CREATE TABLE `entrenador` (
     `nombre` varchar(150) NOT NULL,
     `especialidad` ENUM('pesas', 'cardio', 'yoga', 'spinning') NOT NULL,
     `nivel_experiencia` ENUM('experto', 'avanzado', 'intermedio', 'principiante') NOT NULL
+);
+```
+
+* La tercera que hemos creado sería la tabla **plan de membresia**, la cual va a tener los siguientes atributos:
+
+  * **Id plan** **:** Es un **número entero**, que se **autoincrementa** por defecto y es la **clave primaria**.
+  * **nombre plan :** Es una **cadena** de caracteres y no puede estar vacia por lo que se le pone **not null.**
+  * **duracion de meses :** Es un **numero entero** y no puede estar vacia por lo que se le pone **not null.**
+  * **precio** **:** Es un **float** y no puede estar vacia por lo que se le pone **not null.**
+    ```sql
+    CREATE TABLE `plan_membresia` (
+        `Id_plan` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        `nombre_plan` varchar(150) NOT NULL,
+        `duracion_meses` int NOT NULL,
+        `precio` float NOT NULL
+    );
+
+    ```
+* La cuarta que hemos creado sería la tabla **sesion**, la cual va a tener los siguientes atributos:
+
+  * **Id sesion** **:** Es un **número entero**, que se **autoincrementa** por defecto y es la **clave primaria**.
+  * **fecha de incio :** Es de tipo fecha (**date**) y no puede estar vacia por lo que se le pone **not null.**
+  * **hora de inicio :** Es de tipo tiempo (**time**) y no puede estar vacia por lo que se le pone **not null.**
+  * **duracion en minutos :** Es un **número entero** y no puede estar vacia por lo que se le pone **not null.**
+  * **id de cliente de la sesion :** Es un **número entero** y no puede estar vacia por lo que se le pone **not null.**
+  * **id de entrenador de la sesion :** Es un **número entero** y no puede estar vacia por lo que se le pone **not null.**
+  * Claves foraneas:
+    * El **id de cliente de la sesion** hace referencia al id de la tabla cliente.
+    * El **id de entrenador de la sesion** hace referencia al id de la tabla entrenador.
+
+```sql
+CREATE TABLE `sesion` (
+    `Id_sesion` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `fecha_inicio` date NOT NULL,
+    `hora_inicio` time NOT NULL,
+    `duracion_min` int NOT NULL,
+    `id_cliente_sesion` INT NOT NULL,
+    `id_entrenador_sesion` INT NOT NULL,
+    FOREIGN KEY (`id_cliente_sesion`) REFERENCES `cliente`(`Id_cliente`),
+    FOREIGN KEY (`id_entrenador_sesion`) REFERENCES `entrenador`(`Id_entrenador`)
+);
+```
+
+* Y por último hemos creado la tabla **cliente plan**, la cual va a tener los siguientes atributos:
+  * **cliente** : Es un **número entero**, no puede estar vacia por lo que se le pone **not null, y es la **clave primaria**.**
+  * **plan** : Es un **número entero**, no puede estar vacia por lo que se le pone **not null, y es la **clave primaria**.**
+  * **fecha de inicio** : Es de tipo fecha (**date**) y no puede estar vacia por lo que se le pone **not null.**
+  * Claves foraneas:
+    * El **cliente** hace referencia al id de la tabla cliente.
+    * El **plan** hace referencia al id de la tabla plan.
+
+```sql
+CREATE TABLE `cliente_plan` (
+    `cliente` INT NOT NULL,
+    `plan` INT NOT NULL,
+    `fecha_inicio` DATE NOT NULL,
+    PRIMARY KEY (`cliente`, `plan`), 
+    FOREIGN KEY (`cliente`) REFERENCES `cliente`(`Id_cliente`),
+    FOREIGN KEY (`plan`) REFERENCES `plan_membresia`(`Id_plan`)
 );
 ```
