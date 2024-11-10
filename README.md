@@ -14,9 +14,32 @@ Queremos organizar la información de un gimnasio con las siguientes tablas:
 3. **Plan de Membresía -->** El plan de membresía tendrá un **id único** y se almacenará su **nombre del plan** (por ejemplo "Mensual Básico", "Anual Premiun"), una **duración en meses** y el **costo**.
 4. **Sesion -->** Cada sesion tiene un **id único** y se alamacenara **fecha** y **hora de inicio**, y una **duración en minutos**. Cada sesión es atendida por **un solo entrenador** y **un solo cliente.**
 
+# Configuración npm y creación package.json
+
+Para instalar las dependencias del package.json, tenemos que introducir el siguente comando:
+
+```bash
+npm install express express-session mysql2 pug body-parser dotenv
+```
+
+¿Qué es cada cosa?
+
+* **express** : servidor Web para nodeJS.
+* **express-session** : gestiona sesiones (HTTP) entre el servidor Web/cliente web.
+* **mysql2** : driver para conectar a mysql.
+* **pug** : motor HTML.
+* **body-parser** : para convertir los datos de un formulario (verbos GET y POST) en JSON.
+* **dotenv** : para cargar archivos de configuración de entorno.
+
+Para ejecutar el servicio lo hacemos mediante el comando:
+
+```bash
+node app.js
+```
+
 # ¿Cómo se ha generado la base de datos?
 
-#### .env:
+#### Archivo .env:
 
 Para crear el docker hemos visto necesario crear el .env, el cual va a contener toda la información necesaria para el funcionamiento del docker.
 
