@@ -42,10 +42,10 @@ CREATE TABLE `sesion` (
 );
 
 CREATE TABLE `cliente_plan` (
+    `Id_cliente_plan` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `cliente` INT NOT NULL,
     `plan` INT NOT NULL,
-    `fecha_inicio` DATE NOT NULL,
-    PRIMARY KEY (`cliente`, `plan`, `fecha_inicio`), 
+    `fecha_inicio` DATE NOT NULL, 
     FOREIGN KEY (`cliente`) REFERENCES `cliente`(`Id_cliente`),
     FOREIGN KEY (`plan`) REFERENCES `plan_membresia`(`Id_plan`)
 );
