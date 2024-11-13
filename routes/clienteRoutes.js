@@ -20,22 +20,22 @@ router.post('/add', alumnoController.alumnoAdd);
 /**
  * Ruta para mostrar el formulario de eliminar un alumno
  */
-router.get('/del/:id', alumnoController.alumnoDeleteFormulario);
+router.get('/delete/:Id_cliente', alumnoController.alumnoDeleteFormulario);
 
 /**
  * Ruta para eliminar un alumno
  */
-router.post('/del/:id', alumnoController.alumnoDel);
+router.post('/delete/:Id_cliente', alumnoController.alumnoDel);
 
 /**
  * Ruta para mostrar el formulario de editar un alumno
  */
-router.get('/edit/:id', alumnoController.alumnoEditFormulario);
+router.get('/edit/:Id_cliente', alumnoController.alumnoEditFormulario);
 
 /**
  * Ruta para actualizar un alumno
  */
-router.post('/edit/:id', alumnoController.alumnoEdit);
+router.post('/edit/:Id_cliente', alumnoController.alumnoEdit);
 
 module.exports = router;
 
