@@ -20,12 +20,12 @@ router.post('/add', planMembresiaController.plan_membresiaAdd);
 /**
  * Ruta para mostrar el formulario de eliminar un plan de membresía
  */
-router.get('/del/:Id_plan', planMembresiaController.plan_membresiaDeleteFormulario);
+router.get('/delete/:Id_plan', planMembresiaController.plan_membresiaDeleteFormulario);
 
 /**
  * Ruta para eliminar un plan de membresía
  */
-router.post('/del/:Id_plan', planMembresiaController.plan_membresiaDel);
+router.post('/delete/:Id_plan', planMembresiaController.plan_membresiaDel);
 
 /**
  * Ruta para mostrar el formulario de editar un plan de membresía
