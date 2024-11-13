@@ -13,12 +13,12 @@ routes.get('/add', entrenadorController.entrenadorAddFormulario);
 
 routes.get('/add', entrenadorController.entrenadorAdd);
 
-routes.get('/delete/:id', entrenadorController.entrenadorDeleteFormulario);
+routes.get('/delete/:Id_entrenador', entrenadorController.entrenadorDeleteFormulario);
 
-routes.get('/delete/:id', entrenadorController.entrenadorDelete);
+routes.get('/delete/:Id_entrenador', entrenadorController.entrenadorDelete);
 
-routes.get('/edit/:id', entrenadorController.entrenadorEditFormulario);
+routes.get('/edit/:Id_entrenador', entrenadorController.entrenadorEditFormulario);
 
-routes.get('/edit/:id', entrenadorController.entrenadorEdit);
+routes.get('/edit/:Id_entrenador', entrenadorController.entrenadorEdit);
 
 module.exports = routes;
