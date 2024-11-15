@@ -1,3 +1,5 @@
+extends ../templates/layout
+
 block content
   h1 Agregar nueva sesión
   form(action='/sesiones/add' method='POST')
@@ -19,4 +21,3 @@ block content
     div
       label(for='id_entrenador_sesion') Entrenador
       select(name='id_entrenador_sesion' required)
-       

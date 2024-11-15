@@ -1,3 +1,5 @@
+extends ../templates/layout
+
 block content
   h1 Eliminar sesión
   p ¿Estás seguro de que deseas eliminar esta sesión?
@@ -5,18 +7,18 @@ block content
     input(type='hidden' name='Id_sesion' value=sesion.Id_sesion)
     div
       label Nombre del cliente
-      p= sesion.id_cliente_sesion
+      p=sesion.id_cliente_sesion
     div
       label Nombre del entrenador
-      p= sesion.id_entrenador_sesion
+      p=sesion.id_entrenador_sesion
     div
       label Fecha de inicio
-      p= sesion.fecha_inicio
+      p=sesion.fecha_inicio
     div
       label Hora de inicio
-      p= sesion.hora_inicio
+      p=sesion.hora_inicio
     div
       label Duración
-      p= sesion.duracion_min
+      p=sesion.duracion_min
     button(type='submit') Eliminar
     a(href='/sesiones') Cancelar

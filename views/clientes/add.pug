@@ -1,3 +1,4 @@
+extends ../templates/layout
 block content
   h1 Agregar Cliente
   form(action="/clientes/add" method="POST")
@@ -7,6 +8,9 @@ block content
     div
       label(for="email") Email:
       input(type="email" name="email" id="email" required)
+    div
+      label(for="fecha_registro") Fecha de registro:
+      input(type="date" name="fecha_registro" id="fecha_registro" required)
     div
       label(for="telefono") Teléfono:
       input(type="text" name="telefono" id="telefono" required)

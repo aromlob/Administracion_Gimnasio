@@ -1,3 +1,5 @@
+extends ../templates/layout
+
 block content
   h1 Planes de Membresía
   table
@@ -10,9 +12,9 @@ block content
     tbody
       each plan in planesMembresias
         tr
-          td= plan.Id_plan
-          td= plan.nombre
-          td= plan.precio
+          td=plan.Id_plan
+          td=plan.nombre
+          td=plan.precio
           td
             a(href=`/planesMembresias/edit/${plan.Id_plan}`) Editar
             a(href=`/planesMembresias/delete/${plan.Id_plan}`) Eliminar

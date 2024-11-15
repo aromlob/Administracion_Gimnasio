@@ -1,22 +1,31 @@
+extends ../templates/layout
+
 block content
-  h1 Lista de Clientes
-  table
-    thead
-      tr
-        th ID Cliente
-        th Nombre
-        th Email
-        th Teléfono
-        th Acciones
-    tbody
-      each cliente in clientes
-        tr
-          td= cliente.Id_cliente
-          td= cliente.nombre
-          td= cliente.email
-          td= cliente.telefono
-          td
-            a(href=`/clientes/edit/${cliente.Id_cliente}`) Editar
-            |
-            a(href=`/clientes/delete/${cliente.Id_cliente}`) Eliminar
-  a(href="/clientes/add") Agregar Nuevo Cliente
+    div.container 
+        h3 Listado de clientes:
+        table.table
+            thead 
+                tr
+                    th Id Cliente
+                    th Nombre 
+                    th Email
+                    th Fecha de Registro 
+                    th Número de Teléfono
+                    th Acciones
+            tbody
+                if clientes && clientes.length > 0
+                    each cliente in clientes
+                        tr 
+                            td= cliente.Id_cliente
+                            td= cliente.nombre
+                            td= cliente.email
+                            td= cliente.fecha_registro
+                            td= cliente.numero_telefono
+                            td 
+                                a.btn.btn-danger(href=`/clientes/delete/${cliente.Id_cliente}`) Borrar
+                                a.btn.btn-primary(href=`/clientes/edit/${cliente.Id_cliente}`) Editar
+                else
+                    tr
+                        td(colspan="5") No hay clientes disponibles
+        p 
+            a.btn.btn-success(href="/clientes/add") Añadir un cliente nuevo
