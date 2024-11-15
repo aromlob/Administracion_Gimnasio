@@ -5,7 +5,7 @@ const sesionController = require('../controllers/sesionControllers');
 /**
  * Ruta para obtener todos lo, sesions
  */
-router.get('/', sesionController.sesions);
+router.get('/', sesionController.sesion);
 
 /**
  * Ruta para mostrar el formulario de agregar u, sesion

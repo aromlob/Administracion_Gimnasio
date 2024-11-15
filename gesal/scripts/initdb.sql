@@ -50,6 +50,18 @@ CREATE TABLE `cliente_plan` (
     FOREIGN KEY (`plan`) REFERENCES `plan_membresia`(`Id_plan`)
 );
 
+-- para los logins 
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    `password` VARCHAR(255) NOT NULL, 
+    `enabled` BOOL,
+    tipo ENUM('ENTRENADOR', 'CLIENTE', 'ADMIN'),  
+    cliente INT REFERENCES cliente(Id_cliente),
+    entrenador INT REFERENCES entrenador(Id_entrenador)
+);
+
+
 INSERT INTO cliente (`nombre`, `email`, `fecha_registro`, `numero_telefono`) VALUES ('Luis', 'cliente1@gymcorreo.com', '2022-02-20 00:00:00', '555-6983');
 INSERT INTO cliente (`nombre`, `email`, `fecha_registro`, `numero_telefono`) VALUES ('Sofia', 'cliente2@gymcorreo.com', '2016-03-23 00:00:00', '555-6896');
 INSERT INTO cliente (`nombre`, `email`, `fecha_registro`, `numero_telefono`) VALUES ('Ana', 'cliente3@gymcorreo.com', '2016-02-02 00:00:00', '555-6864');
@@ -103,3 +115,6 @@ INSERT INTO cliente_plan (`cliente`,`plan`,`fecha_inicio`) VALUES(10, 3,' 2005-0
 INSERT INTO cliente_plan (`cliente`,`plan`,`fecha_inicio`) VALUES(2, 2, '2005-07-14 00:00:00');
 INSERT INTO cliente_plan (`cliente`,`plan`,`fecha_inicio`) VALUES(10, 1,' 2011-01-26 00:00:00');
 INSERT INTO cliente_plan (`cliente`,`plan`,`fecha_inicio`) VALUES(6, 1, '2017-07-26 00:00:00');
+
+INSERT INTO `users` (`username`, `password`, `enabled`, `tipo`)
+	VALUES ('admin', '1234', 1, 'ADMIN');
