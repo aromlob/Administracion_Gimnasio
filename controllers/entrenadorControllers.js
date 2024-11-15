@@ -74,7 +74,7 @@ exports.entrenadorDeleteFormulario = (req, res) => {
  * @param {*} res -> El objeto de respuesta de Express
  */
 exports.entrenadorDelete = (req, res) => {
-    const { Id_entrenador, nombre, especialidad, nivel_experiencia } = req.body;
+    const { Id_entrenador} = req.body;
     const paramId = req.params['Id_entrenador'];
 
     if (isNaN(Id_entrenador) || isNaN(paramId) || Id_entrenador !== paramId) {

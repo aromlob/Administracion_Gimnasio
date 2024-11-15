@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const planMembresiaController = require('../controllers/planMembresiaController');
+const planMembresiaController = require('../controllers/planMembresiaControllers');
 
 /**
  * Ruta para obtener todos los planes de membresía

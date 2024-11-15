@@ -5,7 +5,7 @@
 
 const express = require('express');
 const routes = express.Router();
-const clientePlanController = require('../controllers/clientePlanControllers.js');
+const clientePlanController = require('../controllers/clientePlanControllers');
 
 routes.get('/', clientePlanController.cliente_plan);
 

@@ -1,41 +1,26 @@
 const express = require('express');
 const router = express.Router();
-const alumnoController = require('../controllers/alumnoController');
+const clienteController = require('../controllers/clienteControllers');
 
-/**
- * Ruta para obtener todos los alumnos
- */
-router.get('/', alumnoController.alumnos);
+// Ruta para obtener todos los clientes y renderizar la lista
+router.get('/clientes', clienteController.cliente);
 
-/**
- * Ruta para mostrar el formulario de agregar un alumno
- */
-router.get('/add', alumnoController.alumnoAddFormulario);
+// Ruta para mostrar el formulario para agregar un nuevo cliente
+router.get('/clientes/add', clienteController.clienteAddFormulario);
 
-/**
- * Ruta para agregar un nuevo alumno
- */
-router.post('/add', alumnoController.alumnoAdd);
+// Ruta para agregar un cliente a la base de datos
+router.post('/clientes/add', clienteController.clienteAdd);
 
-/**
- * Ruta para mostrar el formulario de eliminar un alumno
- */
-router.get('/delete/:Id_cliente', alumnoController.alumnoDeleteFormulario);
+// Ruta para mostrar el formulario para borrar un cliente
+router.get('/clientes/delete/:Id_cliente', clienteController.clienteDeleteFormulario);
 
-/**
- * Ruta para eliminar un alumno
- */
-router.post('/delete/:Id_cliente', alumnoController.alumnoDel);
+// Ruta para borrar un cliente de la base de datos
+router.post('/clientes/delete/:Id_cliente', clienteController.clienteDel);
 
-/**
- * Ruta para mostrar el formulario de editar un alumno
- */
-router.get('/edit/:Id_cliente', alumnoController.alumnoEditFormulario);
+// Ruta para mostrar el formulario para editar un cliente
+router.get('/clientes/edit/:Id_cliente', clienteController.clienteEditFormulario);
 
-/**
- * Ruta para actualizar un alumno
- */
-router.post('/edit/:Id_cliente', alumnoController.alumnoEdit);
+// Ruta para editar un cliente en la base de datos
+router.post('/clientes/edit/:Id_cliente', clienteController.clienteEdit);
 
 module.exports = router;
-
