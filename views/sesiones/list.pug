@@ -1,0 +1,24 @@
+block content
+  h1 Sesiones
+  table
+    thead
+      tr
+        th Fecha
+        th Hora de inicio
+        th Duración (minutos)
+        th Cliente
+        th Entrenador
+        th Acciones
+    tbody
+      each sesion in sesiones
+        tr
+          td= sesion.fecha_inicio
+          td= sesion.hora_inicio
+          td= sesion.duracion_min
+          td= sesion.id_cliente_sesion
+          td= sesion.id_entrenador_sesion
+          td
+            a(href=`/sesiones/edit/${sesion.Id_sesion}`) Editar
+            |
+            a(href=`/sesiones/delete/${sesion.Id_sesion}`) Eliminar
+  a(href='/sesiones/add') Agregar nueva sesión

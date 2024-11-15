@@ -1,0 +1,6 @@
+block content
+  h1 Confirmar Eliminación
+  p ¿Estás seguro de que deseas eliminar este entrenador?
+  form(action=`/entrenadores/delete/${entrenador.Id_entrenador}` method="POST")
+    button(type="submit") Eliminar
+  a(href="/entrenadores") Volver a la lista de entrenadores

@@ -1,0 +1,6 @@
+block content
+  h1 Confirmar Eliminación
+  p ¿Estás seguro de que deseas eliminar este plan de membresía?
+  form(action=`/planesMembresias/delete/${plan.Id_plan}` method="POST")
+    button(type="submit") Eliminar
+  a(href="/planesMembresias") Volver a la lista de planes

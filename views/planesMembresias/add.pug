@@ -1,0 +1,12 @@
+block content
+  h1 Agregar Plan de Membresía
+  form(action="/planesMembresias/add" method="POST")
+    div
+      label(for="nombre") Nombre:
+      input(type="text" name="nombre" id="nombre" required)
+    div
+      label(for="precio") Precio:
+      input(type="number" name="precio" id="precio" required)
+    div
+      button(type="submit") Agregar Plan
+  a(href="/planesMembresias") Volver a la lista de planes

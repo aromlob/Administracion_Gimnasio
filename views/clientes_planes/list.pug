@@ -1,0 +1,24 @@
+block content
+  h1 Clientes con Planes
+  table
+    thead
+      tr
+        th ID Cliente-Plan
+        th ID Cliente
+        th ID Plan
+        th Fecha de Inicio
+        th Fecha de Fin
+        th Acciones
+    tbody
+      each cliente_plan in clientes_planes
+        tr
+          td= cliente_plan.Id_cliente_plan
+          td= cliente_plan.Id_cliente
+          td= cliente_plan.Id_plan
+          td= cliente_plan.fecha_inicio
+          td= cliente_plan.fecha_fin
+          td
+            a(href=`/clientes_planes/edit/${cliente_plan.Id_cliente_plan}`) Editar
+            |
+            a(href=`/clientes_planes/delete/${cliente_plan.Id_cliente_plan}`) Eliminar
+  a(href="/clientes_planes/add") Agregar Nuevo Cliente-Plan

@@ -1,0 +1,15 @@
+block content
+  h1 Agregar Cliente
+  form(action="/clientes/add" method="POST")
+    div
+      label(for="nombre") Nombre:
+      input(type="text" name="nombre" id="nombre" required)
+    div
+      label(for="email") Email:
+      input(type="email" name="email" id="email" required)
+    div
+      label(for="telefono") Teléfono:
+      input(type="text" name="telefono" id="telefono" required)
+    div
+      button(type="submit") Agregar Cliente
+  a(href="/clientes") Volver a la lista de clientes

@@ -1,0 +1,19 @@
+block content
+  h1 Planes de Membresía
+  table
+    thead
+      tr
+        th ID
+        th Nombre
+        th Precio
+        th Acciones
+    tbody
+      each plan in planesMembresias
+        tr
+          td= plan.Id_plan
+          td= plan.nombre
+          td= plan.precio
+          td
+            a(href=`/planesMembresias/edit/${plan.Id_plan}`) Editar
+            a(href=`/planesMembresias/delete/${plan.Id_plan}`) Eliminar
+  a(href="/planesMembresias/add") Agregar Nuevo Plan

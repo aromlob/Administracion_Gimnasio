@@ -1,0 +1,12 @@
+block content
+  h1 Editar Plan de Membresía
+  form(action=`/planesMembresias/edit/${plan.Id_plan}` method="POST")
+    div
+      label(for="nombre") Nombre:
+      input(type="text" name="nombre" id="nombre" value=plan.nombre required)
+    div
+      label(for="precio") Precio:
+      input(type="number" name="precio" id="precio" value=plan.precio required)
+    div
+      button(type="submit") Guardar Cambios
+  a(href="/planesMembresias") Volver a la lista de planes

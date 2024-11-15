@@ -1,0 +1,22 @@
+block content
+  h1 Agregar nueva sesión
+  form(action='/sesiones/add' method='POST')
+    div
+      label(for='fecha_inicio') Fecha de inicio
+      input(type='date' name='fecha_inicio' required)
+    div
+      label(for='hora_inicio') Hora de inicio
+      input(type='time' name='hora_inicio' required)
+    div
+      label(for='duracion_min') Duración (minutos)
+      input(type='number' name='duracion_min' required)
+    div
+      label(for='id_cliente_sesion') Cliente
+      select(name='id_cliente_sesion' required)
+        option(value='') Selecciona un cliente
+        each cliente in clientes
+          option(value=cliente.Id_cliente)= cliente.nombre
+    div
+      label(for='id_entrenador_sesion') Entrenador
+      select(name='id_entrenador_sesion' required)
+       

@@ -1,0 +1,22 @@
+block content
+  h1 Lista de Clientes
+  table
+    thead
+      tr
+        th ID Cliente
+        th Nombre
+        th Email
+        th Teléfono
+        th Acciones
+    tbody
+      each cliente in clientes
+        tr
+          td= cliente.Id_cliente
+          td= cliente.nombre
+          td= cliente.email
+          td= cliente.telefono
+          td
+            a(href=`/clientes/edit/${cliente.Id_cliente}`) Editar
+            |
+            a(href=`/clientes/delete/${cliente.Id_cliente}`) Eliminar
+  a(href="/clientes/add") Agregar Nuevo Cliente

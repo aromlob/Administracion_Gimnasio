@@ -1,0 +1,12 @@
+block content
+  h1 Editar Entrenador
+  form(action=`/entrenadores/edit/${entrenador.Id_entrenador}` method="POST")
+    div
+      label(for="nombre") Nombre:
+      input(type="text" name="nombre" id="nombre" value=entrenador.nombre required)
+    div
+      label(for="especialidad") Especialidad:
+      input(type="text" name="especialidad" id="especialidad" value=entrenador.especialidad required)
+    div
+      button(type="submit") Guardar Cambios
+  a(href="/entrenadores") Volver a la lista de entrenadores
