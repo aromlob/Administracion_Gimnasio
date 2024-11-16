@@ -2,6 +2,6 @@ extends ../templates/layout
 block content
   h1 Confirmar Eliminación
   p ¿Estás seguro de que deseas eliminar este cliente?
-  form(action=`/clientes/delete/${cliente.Id_cliente}` method="POST")
+  form(action=`/clientes/delete/${cliente.id_cliente}` method="POST")
     button(type="submit") Eliminar
   a(href="/clientes") Volver a la lista de clientes

@@ -7,7 +7,7 @@ const db = require("../db");
  * @param {*} res -> El objeto de respuesta de Express.
  */
 exports.cliente = (req, res) => {
-    db.query("SELECT * FROM `cliente`", (err, response) => {
+    db.query(`SELECT * FROM cliente`, (err, response) => {
         if (err) res.send("Error al buscar el cliente");
         else res.render("clientes/list", { clientes: response });
     });
@@ -29,7 +29,7 @@ exports.clienteAddFormulario = (req, res) => {
 exports.clienteAdd = (req, res) => {
     const { nombre, email, fecha_registro, numero_telefono } = req.body;
     db.query(
-        "INSERT INTO cliente (nombre, email, fecha_registro, numero_telefono) VALUES (?,?,?,?)",
+        `INSERT INTO cliente (nombre, email, fecha_registro, numero_telefono) VALUES (?,?,?,?)`,
         [nombre, email, fecha_registro, numero_telefono],
         (error) => {
             if (error) res.send("Error insertando cliente: " + error.message);
@@ -44,17 +44,17 @@ exports.clienteAdd = (req, res) => {
  * @param {*} res -> El objeto de respuesta de Express. 
  */
 exports.clienteDeleteFormulario = (req, res) => {
-    const { id_cliente } = req.params;
-    if (isNaN(id_cliente)) res.send("Parámetros incorrectos");
+    const { id} = req.params;
+    if (isNaN(id)) res.send("Parámetros incorrectos");
     else
         db.query(
-            "SELECT * FROM cliente WHERE id_cliente=?",
-            [id_cliente],
+            `SELECT * FROM cliente WHERE id_cliente=?`,
+            [id],
             (error, respuesta) => {
                 if (error) res.send("Error al intentar borrar el cliente");
                 else {
                     if (respuesta.length > 0) {
-                        res.render("clientes/delete", { clientes: respuesta[0] });
+                        res.render("clientes/delete", { cliente: respuesta[0] });
                     } else {
                         res.send("Error al intentar borrar el cliente, no existe");
                     }
@@ -69,14 +69,14 @@ exports.clienteDeleteFormulario = (req, res) => {
  * @param {*} res -> El objeto de respuesta de Express.
  */
 exports.clienteDel = (req, res) => {
-    const { id_cliente } = req.params;
+    const {id} = req.params;
 
-    if (isNaN(id_cliente)) {
+    if (isNaN(id)) {
         res.send("Error borrando");
     } else {
         db.query(
-            "DELETE FROM cliente WHERE id_cliente=?",
-            [id_cliente],
+            `DELETE FROM cliente WHERE id_cliente=?`,
+            [id],
             (error) => {
                 if (error) res.send("Error borrando cliente: " + error.message);
                 else res.redirect("/clientes");
@@ -91,17 +91,17 @@ exports.clienteDel = (req, res) => {
  * @param {*} res -> El objeto de respuesta de Express. 
  */
 exports.clienteEditFormulario = (req, res) => {
-    const { id_cliente } = req.params;
-    if (isNaN(id_cliente)) res.send("Parámetros incorrectos");
+    const { id } = req.params;
+    if (isNaN(id)) res.send("Parámetros incorrectos");
     else
         db.query(
-            "SELECT * FROM cliente WHERE id_cliente=?",
-            [id_cliente],
+            `SELECT * FROM cliente WHERE id_cliente=?`,
+            [id],
             (error, respuesta) => {
                 if (error) res.send("Error al intentar actualizar el cliente");
                 else {
                     if (respuesta.length > 0) {
-                        res.render("clientes/edit", { clientes: respuesta[0] });
+                        res.render("clientes/edit", { cliente: respuesta[0] });
                     } else {
                         res.send("Error al intentar actualizar el cliente, no existe");
                     }
@@ -117,14 +117,14 @@ exports.clienteEditFormulario = (req, res) => {
  */
 exports.clienteEdit = (req, res) => {
     const { nombre, email, fecha_registro, numero_telefono } = req.body;
-    const { id_cliente } = req.params;
+    const { id } = req.params;
 
-    if (isNaN(id_cliente)) {
+    if (isNaN(id)) {
         res.send("Error actualizando");
     } else {
         db.query(
-            "UPDATE cliente SET nombre = ?, email = ?, fecha_registro = ?, numero_telefono = ? WHERE id_cliente = ?",
-            [nombre, email, fecha_registro, numero_telefono, id_cliente],
+            `UPDATE cliente SET nombre = ?, email = ?, numero_telefono = ? WHERE id_cliente = ?`,
+            [nombre, email, numero_telefono, id],
             (error) => {
                 if (error) {
                     res.send("Error actualizando cliente: " + error.message);
