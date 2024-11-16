@@ -2,20 +2,24 @@ extends ../templates/layout
 
 block content
   h1 Planes de Membresía
-  table
+  table.table
     thead
       tr
         th ID
         th Nombre
+        th Duracion en meses
         th Precio
-        th Acciones
+        th Editar 
+        th Eliminar
     tbody
-      each plan in planesMembresias
+      each plan_membresia in planes
         tr
-          td=plan.Id_plan
-          td=plan.nombre
-          td=plan.precio
+          td=plan_membresia.id_plan
+          td=plan_membresia.nombre_plan
+          td=plan_membresia.duracion_meses
+          td=plan_membresia.precio
           td
-            a(href=`/planesMembresias/edit/${plan.Id_plan}`) Editar
-            a(href=`/planesMembresias/delete/${plan.Id_plan}`) Eliminar
+            a(href=`/planesMembresias/edit/${plan_membresia.id_plan}`) Editar
+          td
+            a(href=`/planesMembresias/delete/${plan_membresia.id_plan}`) Eliminar
   a(href="/planesMembresias/add") Agregar Nuevo Plan

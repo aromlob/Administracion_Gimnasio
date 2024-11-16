@@ -37,8 +37,8 @@ CREATE TABLE `sesion` (
     `duracion_min` int NOT NULL,
     `id_cliente_sesion` INT NOT NULL,
     `id_entrenador_sesion` INT NOT NULL,
-    FOREIGN KEY (`id_cliente_sesion`) REFERENCES `cliente`(`Id_cliente`),
-    FOREIGN KEY (`id_entrenador_sesion`) REFERENCES `entrenador`(`Id_entrenador`)
+    FOREIGN KEY (`id_cliente_sesion`) REFERENCES `cliente`(`id_cliente`),
+    FOREIGN KEY (`id_entrenador_sesion`) REFERENCES `entrenador`(`id_entrenador`)
 );
 
 CREATE TABLE `cliente_plan` (
@@ -46,8 +46,8 @@ CREATE TABLE `cliente_plan` (
     `cliente` INT NOT NULL,
     `plan` INT NOT NULL,
     `fecha_inicio` DATE NOT NULL, 
-    FOREIGN KEY (`cliente`) REFERENCES `cliente`(`Id_cliente`),
-    FOREIGN KEY (`plan`) REFERENCES `plan_membresia`(`Id_plan`)
+    FOREIGN KEY (`cliente`) REFERENCES `cliente`(`id_cliente`),
+    FOREIGN KEY (`plan`) REFERENCES `plan_membresia`(`id_plan`)
 );
 
 -- para los logins 
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS users (
     `password` VARCHAR(255) NOT NULL, 
     `enabled` BOOL,
     tipo ENUM('ENTRENADOR', 'CLIENTE', 'ADMIN'),  
-    cliente INT REFERENCES cliente(Id_cliente),
+    cliente INT REFERENCES cliente(id_cliente),
     entrenador INT REFERENCES entrenador(Id_entrenador)
 );
 

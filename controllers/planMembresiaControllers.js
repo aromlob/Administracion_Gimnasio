@@ -8,7 +8,7 @@ const db = require("../db");
 exports.plan_membresia = (req, res) => {
     db.query("SELECT * FROM `plan_membresia`", (err, response) => {
         if (err) res.send("Error al buscar el plan de membresia");
-        else res.render("planesMembresias/list", { cliente: response });
+        else res.render("planesMembresias/list", { planes: response });
     });
 };
 

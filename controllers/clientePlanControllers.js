@@ -9,7 +9,7 @@ const db = require("../db");
 exports.cliente_plan = (req, res) => {
     db.query("SELECT * FROM `cliente_plan`", (err, response) => {
         if (err) res.send("Error al buscar el cliente_plan");
-        else res.render("clientes_planes/list", { cliente_plan: response });
+        else res.render("clientes_planes/list", { cliente_planes: response });
     });
 };
 /**
@@ -44,12 +44,12 @@ exports.cliente_planAdd = (req, res) => {
  * @param {*} res -> El objeto de respuesta de Express. 
  */
 exports.cliente_planDeleteFormulario = (req, res) => {
-    const { Id_cliente_plan } = req.params;
-    if (isNaN(Id_cliente_plan)) res.send("Parámetros incorrectos");
+    const { id } = req.params;
+    if (isNaN(id)) res.send("Parámetros incorrectos");
     else
         db.query(
         "SELECT * FROM cliente_plan WHERE Id_cliente_plan=?",
-        [Id_cliente_plan],
+        [id],
         (error, respuesta) => {
             if (error) res.send("Error al intentar borrar el cliente_plan");
             else {
@@ -69,14 +69,14 @@ exports.cliente_planDeleteFormulario = (req, res) => {
  * @param {*} res -> El objeto de respuesta de Express.
  */
 exports.cliente_planDel = (req, res) => {
-    const { Id_cliente_plan } = req.params;
+    const { id } = req.params;
 
-    if (isNaN(Id_cliente_plan)) {
+    if (isNaN(id)) {
         res.send("Error borrando");
     } else {
         db.query(
         "DELETE FROM cliente_plan WHERE Id_cliente_plan=?",
-        [Id_cliente_plan],
+        [id],
         (error) => {
             if (error) res.send("Error borrando cliente_plan: " + error.message);
             else res.redirect("/clientes_planes");
@@ -91,12 +91,12 @@ exports.cliente_planDel = (req, res) => {
  * @param {*} res -> El objeto de respuesta de Express. 
  */
 exports.cliente_planEditFormulario = (req, res) => {
-    const { Id_cliente_plan } = req.params;
-    if (isNaN(Id_cliente_plan)) res.send("Parámetros incorrectos");
+    const { id } = req.params;
+    if (isNaN(id)) res.send("Parámetros incorrectos");
     else
         db.query(
         "SELECT * FROM cliente_plan WHERE Id_cliente_plan=?",
-        [Id_cliente_plan],
+        [id],
         (error, respuesta) => {
             if (error) res.send("Error al intentar actualizar el cliente_plan");
             else {
