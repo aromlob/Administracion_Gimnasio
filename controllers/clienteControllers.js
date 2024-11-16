@@ -9,7 +9,7 @@ const db = require("../db");
 exports.cliente = (req, res) => {
     db.query("SELECT * FROM `cliente`", (err, response) => {
         if (err) res.send("Error al buscar el cliente");
-        else res.render("clientes/list", { cliente: response });
+        else res.render("clientes/list", { clientes: response });
     });
 };
 /**
@@ -32,8 +32,8 @@ exports.clienteAdd = (req, res) => {
         "INSERT INTO cliente (nombre, email, fecha_registro, numero_telefono) VALUES (?,?,?,?)",
         [nombre, email, fecha_registro, numero_telefono],
         (error) => {
-        if (error) res.send("Error insertando cliente: " + error.message);
-        else res.redirect("/clientes");
+            if (error) res.send("Error insertando cliente: " + error.message);
+            else res.redirect("/clientes");
         }
     );
 };
@@ -44,22 +44,22 @@ exports.clienteAdd = (req, res) => {
  * @param {*} res -> El objeto de respuesta de Express. 
  */
 exports.clienteDeleteFormulario = (req, res) => {
-    const { Id_cliente } = req.params;
-    if (isNaN(Id_cliente)) res.send("Parámetros incorrectos");
+    const { id_cliente } = req.params;
+    if (isNaN(id_cliente)) res.send("Parámetros incorrectos");
     else
         db.query(
-        "SELECT * FROM cliente WHERE Id_cliente=?",
-        [Id_cliente],
-        (error, respuesta) => {
-            if (error) res.send("Error al intentar borrar el cliente");
-            else {
-            if (respuesta.length > 0) {
-                res.render("clientes/delete", { cliente: respuesta[0] });
-            } else {
-                res.send("Error al intentar borrar el cliente, no existe");
+            "SELECT * FROM cliente WHERE id_cliente=?",
+            [id_cliente],
+            (error, respuesta) => {
+                if (error) res.send("Error al intentar borrar el cliente");
+                else {
+                    if (respuesta.length > 0) {
+                        res.render("clientes/delete", { clientes: respuesta[0] });
+                    } else {
+                        res.send("Error al intentar borrar el cliente, no existe");
+                    }
+                }
             }
-            }
-        }
         );
 };
 
@@ -69,18 +69,18 @@ exports.clienteDeleteFormulario = (req, res) => {
  * @param {*} res -> El objeto de respuesta de Express.
  */
 exports.clienteDel = (req, res) => {
-    const { Id_cliente } = req.params;
+    const { id_cliente } = req.params;
 
-    if (isNaN(Id_cliente)) {
+    if (isNaN(id_cliente)) {
         res.send("Error borrando");
     } else {
         db.query(
-        "DELETE FROM cliente WHERE Id_cliente=?",
-        [Id_cliente],
-        (error) => {
-            if (error) res.send("Error borrando cliente: " + error.message);
-            else res.redirect("/clientes");
-        }
+            "DELETE FROM cliente WHERE id_cliente=?",
+            [id_cliente],
+            (error) => {
+                if (error) res.send("Error borrando cliente: " + error.message);
+                else res.redirect("/clientes");
+            }
         );
     }
 };
@@ -91,23 +91,23 @@ exports.clienteDel = (req, res) => {
  * @param {*} res -> El objeto de respuesta de Express. 
  */
 exports.clienteEditFormulario = (req, res) => {
-    const { Id_cliente } = req.params;
-    if (isNaN(Id_cliente)) res.send("Parámetros incorrectos");
+    const { id_cliente } = req.params;
+    if (isNaN(id_cliente)) res.send("Parámetros incorrectos");
     else
         db.query(
-        "SELECT * FROM cliente WHERE Id_cliente=?",
-        [Id_cliente],
-        (error, respuesta) => {
-            if (error) res.send("Error al intentar actualizar el cliente");
-            else {
-            if (respuesta.length > 0) {
-                res.render("clientes/edit", { cliente: respuesta[0] });
-            } else {
-                res.send("Error al intentar actualizar el cliente, no existe");
+            "SELECT * FROM cliente WHERE id_cliente=?",
+            [id_cliente],
+            (error, respuesta) => {
+                if (error) res.send("Error al intentar actualizar el cliente");
+                else {
+                    if (respuesta.length > 0) {
+                        res.render("clientes/edit", { clientes: respuesta[0] });
+                    } else {
+                        res.send("Error al intentar actualizar el cliente, no existe");
+                    }
+                }
             }
-            }
-        }
-    );
+        );
 };
 
 /**
@@ -117,20 +117,20 @@ exports.clienteEditFormulario = (req, res) => {
  */
 exports.clienteEdit = (req, res) => {
     const { nombre, email, fecha_registro, numero_telefono } = req.body;
-    const { Id_cliente } = req.params;
+    const { id_cliente } = req.params;
 
-    if (isNaN(Id_cliente)) {
+    if (isNaN(id_cliente)) {
         res.send("Error actualizando");
     } else {
         db.query(
-        "UPDATE cliente SET nombre = ?, email = ?, fecha_registro = ?, numero_telefono = ? WHERE Id_cliente = ?",
-        [nombre, email, fecha_registro, numero_telefono, Id_cliente],
-        (error) => {
-            if (error) {
-            res.send("Error actualizando cliente: " + error.message);
-            console.log(error);
-            } else res.redirect("/clientes");
-        }
+            "UPDATE cliente SET nombre = ?, email = ?, fecha_registro = ?, numero_telefono = ? WHERE id_cliente = ?",
+            [nombre, email, fecha_registro, numero_telefono, id_cliente],
+            (error) => {
+                if (error) {
+                    res.send("Error actualizando cliente: " + error.message);
+                    console.log(error);
+                } else res.redirect("/clientes");
+            }
         );
     }
 };

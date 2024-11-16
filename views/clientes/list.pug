@@ -5,27 +5,25 @@ block content
         h3 Listado de clientes:
         table.table
             thead 
-                tr
-                    th Id Cliente
+                tr 
+                    th id_cliente 
                     th Nombre 
-                    th Email
-                    th Fecha de Registro 
-                    th Número de Teléfono
-                    th Acciones
-            tbody
-                if clientes && clientes.length > 0
-                    each cliente in clientes
-                        tr 
-                            td= cliente.Id_cliente
-                            td= cliente.nombre
-                            td= cliente.email
-                            td= cliente.fecha_registro
-                            td= cliente.numero_telefono
-                            td 
-                                a.btn.btn-danger(href=`/clientes/delete/${cliente.Id_cliente}`) Borrar
-                                a.btn.btn-primary(href=`/clientes/edit/${cliente.Id_cliente}`) Editar
-                else
-                    tr
-                        td(colspan="5") No hay clientes disponibles
+                    th Email 
+                    th Fecha de REgistro 
+                    th Numero de telefono 
+                    th Borrar 
+                    th Editar
+            tbody 
+                each cliente in clientes 
+                    tr 
+                        td=cliente.Id_cliente 
+                        td=cliente.nombre 
+                        td=cliente.email 
+                        td=cliente.fecha_registro 
+                        td=cliente.numero_telefono 
+                        td 
+                            a(href=`/clientes/delete/${cliente.Id_cliente}`) Borrar
+                        td
+                            a(href=`/clientes/edit/${cliente.Id_cliente}`) Editar
         p 
-            a.btn.btn-success(href="/clientes/add") Añadir un cliente nuevo
+            a(href=`/clientes/add`) Añadir

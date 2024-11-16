@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS `sesion`;
 DROP TABLE IF EXISTS `cliente_plan`;
 
 CREATE TABLE `cliente` (
-    `Id_cliente` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `id_cliente` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `nombre` varchar(150) NOT NULL,
     `email` varchar(150) NOT NULL,
     `fecha_registro` date NOT NULL,
@@ -17,21 +17,21 @@ CREATE TABLE `cliente` (
 );
 
 CREATE TABLE `entrenador` (
-    `Id_entrenador` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `id_entrenador` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `nombre` varchar(150) NOT NULL,
     `especialidad` ENUM('pesas', 'cardio', 'yoga', 'spinning', 'crossfit') NOT NULL,
     `nivel_experiencia` ENUM('experto', 'avanzado', 'intermedio', 'principiante') NOT NULL
 );
 
 CREATE TABLE `plan_membresia` (
-    `Id_plan` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `id_plan` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `nombre_plan` varchar(150) NOT NULL,
     `duracion_meses` int NOT NULL,
     `precio` float NOT NULL
 );
 
 CREATE TABLE `sesion` (
-    `Id_sesion` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `id_sesion` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `fecha_inicio` date NOT NULL,
     `hora_inicio` time NOT NULL,
     `duracion_min` int NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE `sesion` (
 );
 
 CREATE TABLE `cliente_plan` (
-    `Id_cliente_plan` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `id_cliente_plan` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `cliente` INT NOT NULL,
     `plan` INT NOT NULL,
     `fecha_inicio` DATE NOT NULL, 
@@ -61,6 +61,7 @@ CREATE TABLE IF NOT EXISTS users (
     entrenador INT REFERENCES entrenador(Id_entrenador)
 );
 
+SET NAMES utf8mb4;
 
 INSERT INTO cliente (`nombre`, `email`, `fecha_registro`, `numero_telefono`) VALUES ('Luis', 'cliente1@gymcorreo.com', '2022-02-20 00:00:00', '555-6983');
 INSERT INTO cliente (`nombre`, `email`, `fecha_registro`, `numero_telefono`) VALUES ('Sofia', 'cliente2@gymcorreo.com', '2016-03-23 00:00:00', '555-6896');
