@@ -13,11 +13,17 @@ block content
       label(for='duracion_min') Duración (minutos)
       input(type='number' name='duracion_min' required)
     div
-      label(for='id_cliente') Cliente
-      select(name='id_cliente' required)
+      label(for='id') Cliente
+      select(name='id' required)
         option(value='') Selecciona un cliente
         each cliente in clientes
           option(value=cliente.id)= cliente.nombre
     div
-      label(for='id_entrenador') Entrenador
-      select(name='id_entrenador' required)
+      label(for='id') Entrenador
+      select(name='id' required)
+        option(value='') Selecciona un entrenador
+        each entrenador in entrenadores
+          option(value=entrenador.id)= entrenador.nombre
+    div
+      button(type="submit") Agregar Sesion
+  a(href="/sesiones") Volver a la lista de sesion

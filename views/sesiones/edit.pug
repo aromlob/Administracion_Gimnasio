@@ -1,24 +1,23 @@
-extends ../templates/layout
-
 block content
   h1 Eliminar sesión
   p ¿Estás seguro de que deseas eliminar esta sesión?
-  form(action='/sesiones/delete' method='POST')
-    input(type='hidden' name='id' value=sesion.id)
+  form(action=/sesiones/delete/${sesion.id} method="POST")
     div
-      label Nombre del cliente
-      p=sesion.id_cliente
+      label(for="id_cliente") Id Cliente:
+      input(type="text" name="id_cliente" id="id_cliente" value=sesion.id_cliente required)
     div
-      label Nombre del entrenador
-      p=sesion.id_entrenador
+      label(for="id_entrenador") Id Entrenador:
+      input(type="text" name="id_entrenador" id="id_entrenador" value=sesion.id_entrenador required)
     div
-      label Fecha de inicio
-      p=sesion.fecha_inicio
+      label(for="fecha_inicio") Fecha de inicio:
+      input(type="text" name="fecha_inicio" id="fecha_inicio" value=sesion.fecha_inicio required)
     div
-      label Hora de inicio
-      p=sesion.hora_inicio
+      label(for="hora_inicio") Hora de inicio:
+      input(type="text" name="hora_inicio" id="hora_inicio" value=sesion.hora_inicio required)
     div
-      label Duración
-      p=sesion.duracion_min
-    button(type='submit') Eliminar
-    a(href='/sesiones') Cancelar
+      label(for="duracion_min") Duración:
+      input(type="text" name="duracion_min" id="duracion_min" value=sesion.duracion_min required)
+    div
+      button(type="submit") Eliminar
+  a(href="/sesiones") Volver a la lista de sesiones
+extends ../templates/layout

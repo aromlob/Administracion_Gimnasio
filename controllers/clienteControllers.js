@@ -175,3 +175,47 @@ exports.planesPorCliente = (req, res) => {
         )
     }
 };
+
+exports.asociarClientePlanAddFormulario = (req, res) =>{
+    const {id} = req.params;
+    
+    if(isNaN(id)){
+        res.send('Error id cliente inválido');
+    }else{
+        db.query(
+            `SELECT pm.id, pm.nombre_plan FROM plan_menbresia pm
+                WHERE pm.id NOT IN(
+                    SELECT id_plan FROM cliente_plan
+                    WHERE id_cliente=?)`,
+            [id],
+            (error, planes) =>{
+                if(error){
+                    res.send('Error al obtener los planes');
+                }else{
+                    res.render('clientes/addClientePlan.pug', {planes, clienteId: id});
+                }
+            }
+        );
+    }
+}
+
+exports.asociarClientePlanAdd = (req, res) =>{
+    const {id} = req.params;
+    const {planId} = req.body;
+    
+    if(isNaN(id) || isNaN(planId)){
+        res.send('Error ids inválidos');
+    }else{
+        db.query(
+            `INSERT INTO cliente_plan (id_cliente, id_plan) VALUES (?,?)`,
+            [id, planId],
+            (error) =>{
+                if(error){
+                    res.send('Error al asociar el plan con el cliente');
+                }else{
+                    res.redirect('/clientes/${id}/planes');
+                }
+            }
+        );
+    }
+}

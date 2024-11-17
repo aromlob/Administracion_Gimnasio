@@ -84,7 +84,7 @@ exports.sesionDeleteFormulario = (req, res) => {
  * @param {*} res -> El objeto de respuesta de Express.
  */
 exports.sesionDel = (req, res) => {
-    const { id } = req.params;
+    const { id } = req.body;
 
     if (isNaN(id)) {
         res.send('Error borrando');

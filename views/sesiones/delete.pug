@@ -3,7 +3,7 @@ extends ../templates/layout
 block content
   h1 Eliminar sesión
   p ¿Estás seguro de que deseas eliminar esta sesión?
-  form(action='/sesiones/delete' method='POST')
+  form(action=`/sesiones/delete/${sesion.id}` method='POST')
     input(type='hidden' name='id' value=sesion.id)
     div
       label Nombre del cliente
