@@ -9,6 +9,7 @@ block content
                 th Nombre plan
                 th Precio
                 th fecha inicio
+                th Eliminar
         tbody
             each cliente in clientes
                 tr
@@ -16,3 +17,5 @@ block content
                     td= cliente.nombre_plan
                     td= cliente.precio
                     td= cliente.fecha_inicio
+                    td 
+                        a(href=`/clientes/planesDelete/${cliente.id}`) Eliminar

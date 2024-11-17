@@ -3,26 +3,28 @@ extends ../templates/layout
 block content
   h1 Sesiones
   table.table
-    thead
-      tr
-        th Cliente
-        th Entrenador
-        th Fecha
-        th Hora de inicio
-        th Duración
-        th Editar 
-        th Eliminar
-    tbody
-      each sesion in sesiones
+      thead
         tr
-          td=sesion.id_cliente
-          td=sesion.id_entrenador
-          td=sesion.fecha_inicio
-          td=sesion.hora_inicio
-          td=sesion.duracion_min
-          td
-            a(href=`/sesiones/edit/${sesion.id}`) Editar
-          td
-            a(href=`/sesiones/delete/${sesion.id}`) Eliminar
-    p
-      a(href='/sesiones/add') Agregar nueva sesión
+          th Sesion id
+          th Cliente
+          th Entrenador
+          th Fecha
+          th Hora de inicio
+          th Duración
+          th Editar 
+          th Eliminar
+      tbody
+        each sesion in sesiones
+          tr
+            td=sesion.id
+            td=sesion.id_cliente
+            td=sesion.id_entrenador
+            td=sesion.fecha_inicio
+            td=sesion.hora_inicio
+            td=sesion.duracion_min
+            td
+              a(href=`/sesiones/edit/${sesion.id}`) Editar
+            td
+              a(href=`/sesiones/delete/${sesion.id}`) Eliminar
+  p
+    a(href='/sesiones/add') Agregar nueva sesión

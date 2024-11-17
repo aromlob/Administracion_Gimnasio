@@ -7,7 +7,7 @@ const db = require('../db');
  */
 exports.sesion = (req, res) => {
     db.query(
-        'SELECT * FROM sesion JOIN cliente ON sesion.id_cliente = cliente.id JOIN entrenador ON sesion.id_entrenador = entrenador.id',
+        'SELECT * FROM sesion',
         (err, response) => {
             if (err) res.send('Error al buscar las sesiones');
             else res.render('sesiones/list', { sesiones: response });
@@ -21,17 +21,7 @@ exports.sesion = (req, res) => {
  * @param {*} res -> El objeto de respuesta de Express.
  */
 exports.sesionAddFormulario = (req, res) => {
-    db.query('SELECT * FROM cliente', (err, clientes) => {
-        if (err) res.send('Error al cargar clientes');
-        else {
-            db.query('SELECT * FROM entrenador', (err, entrenadores) => {
-                if (err) res.send('Error al cargar entrenadores');
-                else {
-                    res.render('sesiones/add', { clientes, entrenadores });
-                }
-            });
-        }
-    });
+    res.render('sesiones/add');
 };
 
 /**
@@ -40,7 +30,7 @@ exports.sesionAddFormulario = (req, res) => {
  * @param {*} res -> El objeto de respuesta de Express.
  */
 exports.sesionAdd = (req, res) => {
-    const { fecha_inicio, hora_inicio, duracion_min} = req.body;
+    const { fecha_inicio, hora_inicio, duracion_min, id_cliente, id_entrenador } = req.body;
 
     db.query(
         'INSERT INTO sesion (fecha_inicio, hora_inicio, duracion_min, id_cliente, id_entrenador) VALUES (?, ?, ?, ?, ?)',
@@ -84,7 +74,7 @@ exports.sesionDeleteFormulario = (req, res) => {
  * @param {*} res -> El objeto de respuesta de Express.
  */
 exports.sesionDel = (req, res) => {
-    const { id } = req.body;
+    const { id } = req.params;
 
     if (isNaN(id)) {
         res.send('Error borrando');
@@ -113,26 +103,13 @@ exports.sesionEditFormulario = (req, res) => {
             'SELECT * FROM sesion WHERE id=?',
             [id],
             (error, respuesta) => {
-                if (error) res.send('Error al intentar actualizar la sesión');
-                else {
+                if (error){
+                    res.send('Error editando sesion')
+                }else {
                     if (respuesta.length > 0) {
-                        db.query('SELECT * FROM cliente', (err, clientes) => {
-                            if (err) res.send('Error al cargar clientes');
-                            else {
-                                db.query('SELECT * FROM entrenador', (err, entrenadores) => {
-                                    if (err) res.send('Error al cargar entrenadores');
-                                    else {
-                                        res.render('sesiones/edit', {
-                                            sesion: respuesta[0],
-                                            clientes,
-                                            entrenadores
-                                        });
-                                    }
-                                });
-                            }
-                        });
+                        res.render("sesiones/edit", { sesion: respuesta[0] });
                     } else {
-                        res.send('Error al intentar actualizar la sesión, no existe');
+                        res.send("Error al intentar actualizar el sesion, no existe");
                     }
                 }
             }

@@ -14,6 +14,7 @@ block content
                     th Borrar 
                     th Editar
                     th Mostrar planes
+                    th Añadir planes
             tbody 
                 each cliente in clientes 
                     tr 
@@ -27,6 +28,8 @@ block content
                         td
                             a(href=`/clientes/edit/${cliente.id}`) Editar
                         td 
-                            a(href=`/clientes/${cliente.id}/planes`) Mostrar planes 
+                            a(href=`/clientes/${cliente.id}/planes`) Mostrar planes
+                        td 
+                            a(href=`/clientes/${cliente.id}/planes/add`) Añadir planes
         p 
             a(href=`/clientes/add`) Añadir

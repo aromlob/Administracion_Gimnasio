@@ -26,6 +26,7 @@ router.post('/edit/:id', clienteController.clienteEdit);
 router.get('/:id/planes',clienteController.planesPorCliente);
 
 router.get('/:id/planes/add',clienteController.asociarClientePlanAddFormulario);
+
 router.post('/:id/planes/add', clienteController.asociarClientePlanAdd);
 
 module.exports = router;

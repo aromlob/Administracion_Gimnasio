@@ -1,0 +1,17 @@
+extends ../templates/layout
+
+block content
+
+    div 
+        h3 Asociar plan al cliente 
+        if planes.length > 0
+            form(action=`/clientes/${clienteId}/planes/add` method="post")
+                label(for="planId") Selecciona un plan:
+                select(name="planId" id="planId" required)
+                    each plan in planes 
+                        option(value=plan.id)= plan.nombre_plan
+                br
+                button(type="submit") Asociar
+        else 
+            p No hay planes disponibles para asociar.
+            a(href=`/clientes/${clienteId}/planes`) Volver a la lista de planes del cliente

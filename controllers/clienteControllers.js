@@ -183,7 +183,7 @@ exports.asociarClientePlanAddFormulario = (req, res) =>{
         res.send('Error id cliente inválido');
     }else{
         db.query(
-            `SELECT pm.id, pm.nombre_plan FROM plan_menbresia pm
+            `SELECT pm.id, pm.nombre_plan FROM plan_membresia pm
                 WHERE pm.id NOT IN(
                     SELECT id_plan FROM cliente_plan
                     WHERE id_cliente=?)`,
@@ -192,7 +192,7 @@ exports.asociarClientePlanAddFormulario = (req, res) =>{
                 if(error){
                     res.send('Error al obtener los planes');
                 }else{
-                    res.render('clientes/addClientePlan.pug', {planes, clienteId: id});
+                    res.render('clientes/planesAdd', {planes, clienteId: id});
                 }
             }
         );
@@ -202,18 +202,23 @@ exports.asociarClientePlanAddFormulario = (req, res) =>{
 exports.asociarClientePlanAdd = (req, res) =>{
     const {id} = req.params;
     const {planId} = req.body;
-    
+    const fecha_inicio = new Date().toISOString()
+    const fecha = fecha_inicio.split("T");
+    const fechaPlan = fecha[0];
+    console.log(id);
+    console.log(planId);
+    console.log(fechaPlan);
     if(isNaN(id) || isNaN(planId)){
         res.send('Error ids inválidos');
     }else{
         db.query(
-            `INSERT INTO cliente_plan (id_cliente, id_plan) VALUES (?,?)`,
-            [id, planId],
+            `INSERT INTO cliente_plan (id_cliente, id_plan, fecha_inicio) VALUES (?,?,?)`,
+            [id, planId, fechaPlan],
             (error) =>{
                 if(error){
                     res.send('Error al asociar el plan con el cliente');
                 }else{
-                    res.redirect('/clientes/${id}/planes');
+                    res.redirect(`/clientes/${id}/planes`);
                 }
             }
         );
