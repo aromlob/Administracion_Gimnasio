@@ -3,9 +3,11 @@ extends ../templates/layout
 block content
   h1 Agregar Plan de Membresía
   form(action="/planesMembresias/add" method="POST")
-    div
-      label(for="nombre_plan") Nombre:
-      input(type="text" name="nombre_plan" id="nombre_plan" required)
+    label(for="nombre_plan") Nombre:
+    select(name="nombre_plan" id="nombre_plan" required)
+      option(value="Básico Anual") Básico Anual
+      option(value="Premium Mensual") Premium Mensual
+      option(value="Elite Mensual") Elite Mensual
     div
       label(for="precio") Precio:
       input(type="number" name="precio" id="precio" required)

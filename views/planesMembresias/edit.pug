@@ -3,9 +3,11 @@ extends ../templates/layout
 block content
   h1 Editar Plan de Membresía
   form(action=`/planesMembresias/edit/${plan_membresia.id_plan}` method="POST")
-    div
-      label(for="nombre_plan") Nombre:
-      input(type="text" name="nombre_plan" id="nombre_plan" value=plan_membresia.nombre_plan required)
+    label(for="nombre_plan") Nombre:
+    select(name="nombre_plan" id="nombre_plan" required)
+      option(value="Básico Anual") Básico Anual
+      option(value="Premium Mensual") Premium Mensual
+      option(value="Elite Mensual") Elite Mensual
     div
       label(for="precio") Precio:
       input(type="number" name="precio" id="precio" value=plan_membresia.precio required)
