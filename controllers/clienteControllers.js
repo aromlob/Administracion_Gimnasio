@@ -134,3 +134,48 @@ exports.clienteEdit = (req, res) => {
         );
     }
 };
+
+
+exports.planesPorCliente = (req, res) => {
+
+    const { id } = req.params;
+    if (isNaN(id)) {
+      res.send("Error id");
+    } else {
+        db.query(
+            `SELECT * FROM cliente WHERE cliente.id_cliente = ?`,
+            [id],
+            (errorCliente, clienteData)=>{
+                if(!errorCliente)
+                    db.query(
+                        `SELECT 
+                                  c.id_cliente, 
+                                  c.nombre, 
+                                  pm.nombre_plan, 
+                                  pm.precio, 
+                                  cp.fecha_inicio
+                              FROM 
+                                  cliente c
+                              JOIN 
+                                  cliente_plan cp ON c.id_cliente = cp.cliente
+                              JOIN 
+                                  plan_membresia pm ON cp.plan = pm.id_plan
+                              WHERE 
+                                  c.id_cliente = ?;`,
+                        [id],
+                        (error, response) => {
+                          if (error)
+                            res.send("Error selecionando el plan cliente" + error.message);
+                          else{
+                            console.log(response);
+                            res.render("clientes/planes", { clientes: response, clienteData:clienteData[0] });
+                            
+                          }
+                            
+                        }
+                    );
+            }
+        )
+      
+    }
+  };

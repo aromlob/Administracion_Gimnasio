@@ -1,0 +1,18 @@
+extends ../templates/layout
+
+block content
+    h1 Planes del cliente #{clienteData.nombre}
+    table.table
+        thead
+            tr
+                th ID Cliente
+                th Nombre plan
+                th Precio
+                th fecha inicio
+        tbody
+            each cliente in clientes
+                tr
+                    td= cliente.id_cliente
+                    td= cliente.nombre_plan
+                    td= cliente.precio
+                    td= cliente.fecha_inicio

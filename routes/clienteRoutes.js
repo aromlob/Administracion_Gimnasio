@@ -23,4 +23,6 @@ router.get('/edit/:id', clienteController.clienteEditFormulario);
 // Ruta para editar un cliente en la base de datos
 router.post('/edit/:id', clienteController.clienteEdit);
 
+router.get('/:id/planes',clienteController.planesPorCliente);
+
 module.exports = router;

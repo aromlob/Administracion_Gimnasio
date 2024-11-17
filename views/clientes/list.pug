@@ -13,6 +13,7 @@ block content
                     th Numero de telefono 
                     th Borrar 
                     th Editar
+                    th Mostrar planes
             tbody 
                 each cliente in clientes 
                     tr 
@@ -25,5 +26,7 @@ block content
                             a(href=`/clientes/delete/${cliente.id_cliente}`) Borrar
                         td
                             a(href=`/clientes/edit/${cliente.id_cliente}`) Editar
+                        td 
+                            a(href=`/clientes/${cliente.id_cliente}/planes`) Mostrar planes 
         p 
             a(href=`/clientes/add`) Añadir
