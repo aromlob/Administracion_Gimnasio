@@ -2,9 +2,9 @@ extends ../templates/layout
 
 block content
   h1 Editar Plan de Membresía
-  form(action=`/planesMembresias/edit/${plan_membresia.id_plan}` method="POST")
+  form(action=`/planesMembresias/edit/${plan_membresia.id}` method="POST")
     label(for="nombre_plan") Nombre:
-    select(name="nombre_plan" id="nombre_plan" required)
+    select(name="nombre_plan" id="nombre_plan" value=plan_membresia.nombre_plan required)
       option(value="Básico Anual") Básico Anual
       option(value="Premium Mensual") Premium Mensual
       option(value="Elite Mensual") Elite Mensual
@@ -13,7 +13,7 @@ block content
       input(type="number" name="precio" id="precio" value=plan_membresia.precio required)
     div 
       label(for="duracion_meses") Duracion de meses:
-      input(type="number" name="duracion_meses" id="duracion_meses" required)
+      input(type="number" name="duracion_meses" id="duracion_meses" value=plan_membresia.duracion_meses required)
     div
       button(type="submit") Guardar Cambios
   a(href="/planesMembresias") Volver a la lista de planes

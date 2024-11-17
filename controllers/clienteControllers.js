@@ -48,7 +48,7 @@ exports.clienteDeleteFormulario = (req, res) => {
     if (isNaN(id)) res.send("Parámetros incorrectos");
     else
         db.query(
-            `SELECT * FROM cliente WHERE id_cliente=?`,
+            `SELECT * FROM cliente WHERE id=?`,
             [id],
             (error, respuesta) => {
                 if (error) res.send("Error al intentar borrar el cliente");
@@ -75,7 +75,7 @@ exports.clienteDel = (req, res) => {
         res.send("Error borrando");
     } else {
         db.query(
-            `DELETE FROM cliente WHERE id_cliente=?`,
+            `DELETE FROM cliente WHERE id=?`,
             [id],
             (error) => {
                 if (error) res.send("Error borrando cliente: " + error.message);
@@ -95,7 +95,7 @@ exports.clienteEditFormulario = (req, res) => {
     if (isNaN(id)) res.send("Parámetros incorrectos");
     else
         db.query(
-            `SELECT * FROM cliente WHERE id_cliente=?`,
+            `SELECT * FROM cliente WHERE id=?`,
             [id],
             (error, respuesta) => {
                 if (error) res.send("Error al intentar actualizar el cliente");
@@ -123,7 +123,7 @@ exports.clienteEdit = (req, res) => {
         res.send("Error actualizando");
     } else {
         db.query(
-            `UPDATE cliente SET nombre = ?, email = ?, numero_telefono = ? WHERE id_cliente = ?`,
+            `UPDATE cliente SET nombre = ?, email = ?, numero_telefono = ? WHERE id = ?`,
             [nombre, email, numero_telefono, id],
             (error) => {
                 if (error) {
@@ -140,42 +140,38 @@ exports.planesPorCliente = (req, res) => {
 
     const { id } = req.params;
     if (isNaN(id)) {
-      res.send("Error id");
+        res.send("Error id");
     } else {
         db.query(
-            `SELECT * FROM cliente WHERE cliente.id_cliente = ?`,
+            `SELECT * FROM cliente WHERE cliente.id = ?`,
             [id],
             (errorCliente, clienteData)=>{
                 if(!errorCliente)
                     db.query(
                         `SELECT 
-                                  c.id_cliente, 
-                                  c.nombre, 
-                                  pm.nombre_plan, 
-                                  pm.precio, 
-                                  cp.fecha_inicio
-                              FROM 
-                                  cliente c
-                              JOIN 
-                                  cliente_plan cp ON c.id_cliente = cp.cliente
-                              JOIN 
-                                  plan_membresia pm ON cp.plan = pm.id_plan
-                              WHERE 
-                                  c.id_cliente = ?;`,
+                                c.id, 
+                                c.nombre, 
+                                pm.nombre_plan, 
+                                pm.precio, 
+                                cp.fecha_inicio
+                            FROM cliente c
+                            JOIN 
+                                cliente_plan cp ON c.id = cp.id_cliente
+                            JOIN 
+                                plan_membresia pm ON cp.id_plan = pm.id
+                            WHERE 
+                                c.id = ?;`,
                         [id],
                         (error, response) => {
-                          if (error)
-                            res.send("Error selecionando el plan cliente" + error.message);
-                          else{
-                            console.log(response);
-                            res.render("clientes/planes", { clientes: response, clienteData:clienteData[0] });
-                            
-                          }
-                            
+                            if (error)
+                                res.send("Error selecionando el plan cliente" + error.message);
+                            else{
+                                console.log(response);
+                                res.render("clientes/planes", { clientes: response, clienteData:clienteData[0] });
+                            }
                         }
                     );
             }
         )
-      
     }
-  };
+};

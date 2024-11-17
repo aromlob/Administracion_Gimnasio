@@ -44,12 +44,12 @@ exports.plan_membresiaAdd = (req, res) => {
  * @param {*} res -> El objeto de respuesta de Express.
  */
 exports.plan_membresiaDeleteFormulario = (req, res) => {
-    const { Id_plan } = req.params;
-    if (isNaN(Id_plan)) res.send("Parámetros incorrectos");
+    const { id } = req.params;
+    if (isNaN(id)) res.send("Parámetros incorrectos");
     else
         db.query(
-            "SELECT * FROM plan_membresia WHERE Id_plan=?",
-            [Id_plan],
+            "SELECT * FROM plan_membresia WHERE id=?",
+            [id],
             (error, respuesta) => {
                 if (error) res.send("Error al intentar borrar el plan de membresia");
                 else {
@@ -69,14 +69,14 @@ exports.plan_membresiaDeleteFormulario = (req, res) => {
  * @param {*} res -> El objeto de respuesta de Express.
  */
 exports.plan_membresiaDel = (req, res) => {
-    const { Id_plan } = req.params;
+    const { id } = req.params;
 
-    if (isNaN(Id_plan)) {
+    if (isNaN(id)) {
         res.send("Error borrando");
     } else {
         db.query(
-            "DELETE FROM plan_membresia WHERE Id_plan=?",
-            [Id_plan],
+            "DELETE FROM plan_membresia WHERE id=?",
+            [id],
             (error) => {
                 if (error) res.send("Error borrando el plan de membresia: " + error.message);
                 else res.redirect("/planesMembresias");
@@ -91,12 +91,12 @@ exports.plan_membresiaDel = (req, res) => {
  * @param {*} res -> El objeto de respuesta de Express.
  */
 exports.plan_membresiaEditFormulario = (req, res) => {
-    const { Id_plan } = req.params;
-    if (isNaN(Id_plan)) res.send("Parámetros incorrectos");
+    const { id } = req.params;
+    if (isNaN(id)) res.send("Parámetros incorrectos");
     else
         db.query(
-            "SELECT * FROM plan_membresia WHERE Id_plan=?",
-            [Id_plan],
+            "SELECT * FROM plan_membresia WHERE id=?",
+            [id],
             (error, respuesta) => {
                 if (error) res.send("Error al intentar actualizar el plan de membresia");
                 else {
@@ -117,14 +117,14 @@ exports.plan_membresiaEditFormulario = (req, res) => {
  */
 exports.plan_membresiaEdit = (req, res) => {
     const { nombre_plan, duracion_meses, precio } = req.body;
-    const { Id_plan } = req.params;
+    const { id } = req.params;
 
-    if (isNaN(Id_plan)) {
+    if (isNaN(id)) {
         res.send("Error actualizando");
     } else {
         db.query(
-            "UPDATE plan_membresia SET nombre_plan = ?, duracion_meses = ?, precio = ? WHERE Id_plan = ?",
-            [nombre_plan, duracion_meses, precio, Id_plan],
+            "UPDATE plan_membresia SET nombre_plan = ?, duracion_meses = ?, precio = ? WHERE id = ?",
+            [nombre_plan, duracion_meses, precio, id],
             (error) => {
                 if (error) {
                     res.send("Error actualizando el plan de membresia: " + error.message);

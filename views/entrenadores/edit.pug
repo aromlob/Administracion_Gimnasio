@@ -2,7 +2,7 @@ extends ../templates/layout
 
 block content
   h1 Editar Entrenador
-  form(action=`/entrenadores/edit/${entrenador.id_entrenador}` method="POST")
+  form(action=`/entrenadores/edit/${entrenador.id}` method="POST")
     div
       label(for="nombre") Nombre:
       input(type="text" name="nombre" id="nombre" value=entrenador.nombre required)

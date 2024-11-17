@@ -1,7 +1,7 @@
 extends ../templates/layout
 block content
   h1 Editar Cliente
-  form(action=`/clientes/edit/${cliente.id_cliente}` method="POST")
+  form(action=`/clientes/edit/${cliente.id}` method="POST")
     div
       label(for="nombre") Nombre:
       input(type="text" name="nombre" id="nombre" value=cliente.nombre required)

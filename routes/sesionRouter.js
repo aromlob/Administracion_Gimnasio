@@ -20,21 +20,21 @@ router.post('/add', sesionController.sesionAdd);
 /**
  * Ruta para mostrar el formulario de eliminar u, sesion
  */
-router.get('/delete/:Id_sesion', sesionController.sesionDeleteFormulario);
+router.get('/delete/:id', sesionController.sesionDeleteFormulario);
 
 /**
  * Ruta para eliminar u, sesion
  */
-router.post('/delete/:Id_sesion', sesionController.sesionDel);
+router.post('/delete/:id', sesionController.sesionDel);
 
 /**
  * Ruta para mostrar el formulario de editar u, sesion
  */
-router.get('/edit/:Id_sesion', sesionController.sesionEditFormulario);
+router.get('/edit/:id', sesionController.sesionEditFormulario);
 
 /**
  * Ruta para actualizar u, sesion
  */
-router.post('/edit/:Id_sesion', sesionController.sesionEdit);
+router.post('/edit/:id', sesionController.sesionEdit);
 
 module.exports = router;

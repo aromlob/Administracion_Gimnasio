@@ -3,6 +3,6 @@ extends ../templates/layout
 block content
   h1 Confirmar Eliminación
   p ¿Estás seguro de que deseas eliminar este registro de cliente-plan?
-  form(action=`/clientes_planes/delete/${cliente_plan.id_cliente_plan}` method="POST")
+  form(action=`/clientes_planes/delete/${cliente_plan.id}` method="POST")
     button(type="submit") Eliminar
   a(href="/clientes_planes") Volver a la lista de cliente-plan

@@ -17,16 +17,16 @@ block content
             tbody 
                 each cliente in clientes 
                     tr 
-                        td=cliente.id_cliente 
+                        td=cliente.id
                         td=cliente.nombre 
                         td=cliente.email 
                         td=cliente.fecha_registro 
                         td=cliente.numero_telefono 
                         td 
-                            a(href=`/clientes/delete/${cliente.id_cliente}`) Borrar
+                            a(href=`/clientes/delete/${cliente.id}`) Borrar
                         td
-                            a(href=`/clientes/edit/${cliente.id_cliente}`) Editar
+                            a(href=`/clientes/edit/${cliente.id}`) Editar
                         td 
-                            a(href=`/clientes/${cliente.id_cliente}/planes`) Mostrar planes 
+                            a(href=`/clientes/${cliente.id}/planes`) Mostrar planes 
         p 
             a(href=`/clientes/add`) Añadir

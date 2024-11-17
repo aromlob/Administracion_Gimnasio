@@ -14,12 +14,12 @@ block content
     tbody
       each plan_membresia in planes
         tr
-          td=plan_membresia.id_plan
+          td=plan_membresia.id
           td=plan_membresia.nombre_plan
           td=plan_membresia.duracion_meses
           td=plan_membresia.precio
           td
-            a(href=`/planesMembresias/edit/${plan_membresia.id_plan}`) Editar
+            a(href=`/planesMembresias/edit/${plan_membresia.id}`) Editar
           td
-            a(href=`/planesMembresias/delete/${plan_membresia.id_plan}`) Eliminar
+            a(href=`/planesMembresias/delete/${plan_membresia.id}`) Eliminar
   a(href="/planesMembresias/add") Agregar Nuevo Plan

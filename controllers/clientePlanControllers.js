@@ -28,10 +28,10 @@ exports.cliente_planAddFormulario = (req, res) => {
  * @param {*} res -> El objeto de respuesta de Express.
  */
 exports.cliente_planAdd = (req, res) => {
-  const { cliente, plan, fecha_inicio } = req.body;
+  const { id_cliente, id_plan, fecha_inicio } = req.body;
   db.query(
-    `INSERT INTO cliente_plan (cliente, plan, fecha_inicio) VALUES (?,?,'?')`,
-    [cliente, plan, fecha_inicio],
+    `INSERT INTO cliente_plan (id_cliente, id_plan, fecha_inicio) VALUES (?,?,'?')`,
+    [id_cliente, id_plan, fecha_inicio],
     (error) => {
       if (error) res.send("Error insertando cliente_plan: " + error.message);
       else res.redirect("/clientes_planes");
@@ -49,7 +49,7 @@ exports.cliente_planDeleteFormulario = (req, res) => {
   if (isNaN(id)) res.send("Parámetros incorrectos");
   else
     db.query(
-      "SELECT * FROM cliente_plan WHERE Id_cliente_plan=?",
+      "SELECT * FROM cliente_plan WHERE id=?",
       [id],
       (error, respuesta) => {
         if (error) res.send("Error al intentar borrar el cliente_plan");
@@ -78,7 +78,7 @@ exports.cliente_planDel = (req, res) => {
     res.send("Error borrando");
   } else {
     db.query(
-      "DELETE FROM cliente_plan WHERE Id_cliente_plan=?",
+      "DELETE FROM cliente_plan WHERE id=?",
       [id],
       (error) => {
         if (error) res.send("Error borrando cliente_plan: " + error.message);
@@ -98,7 +98,7 @@ exports.cliente_planEditFormulario = (req, res) => {
   if (isNaN(id)) res.send("Parámetros incorrectos");
   else
     db.query(
-      "SELECT * FROM cliente_plan WHERE Id_cliente_plan=?",
+      "SELECT * FROM cliente_plan WHERE id=?",
       [id],
       (error, respuesta) => {
         if (error) res.send("Error al intentar actualizar el cliente_plan");
@@ -119,15 +119,15 @@ exports.cliente_planEditFormulario = (req, res) => {
  * @param {*} res -> El objeto de respuesta de Express.
  */
 exports.cliente_planEdit = (req, res) => {
-  const { cliente, plan, fecha_inicio } = req.body;
-  cliente, (plan = req.params);
+  const { id_cliente, id_plan, fecha_inicio } = req.body;
+  id_cliente, (id_plan = req.params);
 
-  if (isNaN(cliente, plan)) {
+  if (isNaN(id_cliente, id_plan)) {
     res.send("Error actualizando");
   } else {
     db.query(
-      "UPDATE cliente_plan SET cliente = ?, plan = ?, fecha_inicio = ? WHERE Id_cliente_plan=?",
-      [cliente, plan, fecha_inicio],
+      "UPDATE cliente_plan SET id_cliente = ?, id_plan = ?, fecha_inicio = ? WHERE id=?",
+      [id_cliente, id_plan, fecha_inicio],
       (error) => {
         if (error) {
           res.send("Error actualizando cliente_plan: " + error.message);

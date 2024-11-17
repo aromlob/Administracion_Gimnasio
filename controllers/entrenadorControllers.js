@@ -77,7 +77,7 @@ exports.entrenadorDeleteFormulario = (req, res) => {
         res.send('PARÁMETROS INCORRECTOS');
     } else {
         db.query(
-            'SELECT * FROM entrenador WHERE id_entrenador=?',
+            'SELECT * FROM entrenador WHERE id=?',
             id,
             (error, respuesta) => {
                 if (error) {
@@ -106,7 +106,7 @@ exports.entrenadorDelete = (req, res) => {
         res.send('ERROR BORRANDO');
     } else {
         db.query(
-            'DELETE FROM entrenador WHERE id_entrenador=?',
+            'DELETE FROM entrenador WHERE id=?',
             [id],
             (error, respuesta) => {
                 if (error) {
@@ -130,7 +130,7 @@ exports.entrenadorEditFormulario = (req, res) => {
         res.send('PARÁMETROS INCORRECTOS');
     } else {
         db.query(
-            'SELECT * FROM entrenador WHERE id_entrenador=?',
+            'SELECT * FROM entrenador WHERE id=?',
             id,
             (error, respuesta) => {
                 if (error) {
@@ -172,7 +172,7 @@ exports.entrenadorEdit = (req, res) => {
         }
 
         db.query(
-            'UPDATE `entrenador` SET `nombre` = ?, `especialidad` = ?, `nivel_experiencia` = ? WHERE `id_entrenador` = ?',
+            'UPDATE `entrenador` SET `nombre` = ?, `especialidad` = ?, `nivel_experiencia` = ? WHERE `id` = ?',
             [nombre, especialidad, nivel_experiencia, id],
             (error, respuesta) => {
                 if (error) {

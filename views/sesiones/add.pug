@@ -13,11 +13,11 @@ block content
       label(for='duracion_min') Duración (minutos)
       input(type='number' name='duracion_min' required)
     div
-      label(for='id_cliente_sesion') Cliente
-      select(name='id_cliente_sesion' required)
+      label(for='id_cliente') Cliente
+      select(name='id_cliente' required)
         option(value='') Selecciona un cliente
         each cliente in clientes
-          option(value=cliente.Id_cliente)= cliente.nombre
+          option(value=cliente.id)= cliente.nombre
     div
-      label(for='id_entrenador_sesion') Entrenador
-      select(name='id_entrenador_sesion' required)
+      label(for='id_entrenador') Entrenador
+      select(name='id_entrenador' required)

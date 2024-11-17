@@ -4,11 +4,11 @@ const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const path = require('path');
 
-const clienteRouter = require('./routes/clienteRoutes');
+const clienteRouter = require('./routes/clienteRouter');
 const entrenadorRouter = require('./routes/entrenadorRouter');
 const clientePlanRouter= require('./routes/clientePlanRouter');
-const planMembresiaRouter = require('./routes/planMenbresiaRoutes');
-const sesionRouter = require('./routes/sesionRoutes');
+const planMembresiaRouter = require('./routes/planMenbresiaRouter');
+const sesionRouter = require('./routes/sesionRouter');
 const authRouter = require('./routes/authRouter');
 
 

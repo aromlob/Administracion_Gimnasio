@@ -13,11 +13,11 @@ block content
     tbody
       each cliente_plan in cliente_planes
         tr
-          td= cliente_plan.cliente
-          td= cliente_plan.plan
+          td= cliente_plan.id_cliente
+          td= cliente_plan.id_plan
           td= cliente_plan.fecha_inicio
           td
-            a(href=`/clientes_planes/edit/${cliente_plan.id_cliente_plan}`) Editar
+            a(href=`/clientes_planes/edit/${cliente_plan.id}`) Editar
           td
-            a(href=`/clientes_planes/delete/${cliente_plan.id_cliente_plan}`) Eliminar
+            a(href=`/clientes_planes/delete/${cliente_plan.id}`) Eliminar
   a(href="/clientes_planes/add") Agregar Nuevo Cliente-Plan

@@ -17,9 +17,9 @@ block content
           td=sesion.fecha_inicio
           td=sesion.hora_inicio
           td=sesion.duracion_min
-          td=sesion.id_cliente_sesion
-          td=sesion.id_entrenador_sesion
+          td=sesion.id_cliente
+          td=sesion.id_entrenador
           td
-            a(href=`/sesiones/edit/${sesion.Id_sesion}`) Editar
-            a(href=`/sesiones/delete/${sesion.Id_sesion}`) Eliminar
+            a(href=`/sesiones/edit/${sesion.id}`) Editar
+            a(href=`/sesiones/delete/${sesion.id}`) Eliminar
   a(href='/sesiones/add') Agregar nueva sesión

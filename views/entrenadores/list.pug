@@ -15,13 +15,13 @@ block content
             tbody 
                 each entrenador in entrenadores 
                     tr 
-                        td=entrenador.id_entrenador
+                        td=entrenador.id
                         td=entrenador.nombre
                         td=entrenador.especialidad
                         td=entrenador.nivel_experiencia 
                         td 
-                            a(href=`/entrenadores/delete/${entrenador.id_entrenador}`) Borrar
+                            a(href=`/entrenadores/delete/${entrenador.id}`) Borrar
                         td
-                            a(href=`/entrenadores/edit/${entrenador.id_entrenador}`) Editar
+                            a(href=`/entrenadores/edit/${entrenador.id}`) Editar
         p 
             a(href=`/entrenadores/add`) Añadir
