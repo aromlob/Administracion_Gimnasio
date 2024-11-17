@@ -29,4 +29,7 @@ router.get('/:id/planes/add',clienteController.asociarClientePlanAddFormulario);
 
 router.post('/:id/planes/add', clienteController.asociarClientePlanAdd);
 
+router.get('/:id/planes/delete',clienteController.desasociarClientePlanDeleteFormulario);
+
+router.post('/:id/planes/delete', clienteController.desasociarClientePlanDelete);
 module.exports = router;

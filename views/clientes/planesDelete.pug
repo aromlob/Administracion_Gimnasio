@@ -1,0 +1,15 @@
+extends ../templates/layout
+
+block content
+    div 
+        h3 Desasociar plan del cliente 
+        form(action=`/clientes/${clienteId}/planes/delete` method="post")
+            label(for="planId") Selecciona un plan: 
+            select(name="planId" id="planId" required)
+                each plan in planes 
+                    option(value=plan.id)= plan.nombre_plan 
+            br
+            button(type="submit") Desasociar 
+        if planes.length === 0
+            p No hay planes disponibles para desasociar.
+        a(href=`/clientes/${clienteId}/planes`) Volver a la lista de planes del cliente

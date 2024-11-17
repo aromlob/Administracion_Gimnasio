@@ -205,15 +205,56 @@ exports.asociarClientePlanAdd = (req, res) =>{
     const fecha_inicio = new Date().toISOString()
     const fecha = fecha_inicio.split("T");
     const fechaPlan = fecha[0];
-    console.log(id);
-    console.log(planId);
-    console.log(fechaPlan);
     if(isNaN(id) || isNaN(planId)){
         res.send('Error ids inválidos');
     }else{
         db.query(
             `INSERT INTO cliente_plan (id_cliente, id_plan, fecha_inicio) VALUES (?,?,?)`,
             [id, planId, fechaPlan],
+            (error) =>{
+                if(error){
+                    res.send('Error al asociar el plan con el cliente');
+                }else{
+                    res.redirect(`/clientes/${id}/planes`);
+                }
+            }
+        );
+    }
+}
+
+exports.desasociarClientePlanDeleteFormulario = (req, res) =>{
+    const {id} = req.params;
+    
+    if(isNaN(id)){
+        res.send('Error id cliente inválido');
+    }else{
+        db.query(
+            `SELECT plan_membresia.* 
+            FROM cliente_plan
+            JOIN plan_membresia ON cliente_plan.id_plan = plan_membresia.id
+            WHERE cliente_plan.id_cliente = ?`,
+            [id],
+            (error, planes) =>{
+                if(error){
+                    res.send('Error al obtener los planes');
+                }else{
+                    res.render('clientes/planesDelete', {planes, clienteId: id});
+                }
+            }
+        );
+    }
+}
+
+exports.desasociarClientePlanDelete = (req, res) =>{
+
+    const {id} = req.params;
+    const {planId} = req.body;
+    if(isNaN(id) || isNaN(planId)){
+        res.send('Error ids inválidos');
+    }else{
+        db.query(
+            `DELETE FROM cliente_plan WHERE id_cliente = ? AND id_plan = ?`,
+            [id, planId],
             (error) =>{
                 if(error){
                     res.send('Error al asociar el plan con el cliente');
