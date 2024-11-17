@@ -3,6 +3,15 @@ extends ../templates/layout
 block content
   h1 Confirmar Eliminación
   p ¿Estás seguro de que deseas eliminar este entrenador?
-  form(action=`/entrenadores/delete/${entrenador.Id_entrenador}` method="POST")
+  form(action=`/entrenadores/delete/${entrenador.id_entrenador}` method="POST")
+    div
+      label(for="nombre") Nombre:
+      input(type="text" name="nombre" id="nombre" value=entrenador.nombre required)
+    div
+      label(for="especialidad") Especialidad:
+      input(type="text" name="especialidad" id="especialidad" value=entrenador.especialidad required)
+    div
+      label(for="nivel_experiencia") Nivel de experiencia:
+      input(type="text" name="nivel_experiencia" id="nivel_experiencia" value=entrenador.nivel_experiencia required)
     button(type="submit") Eliminar
   a(href="/entrenadores") Volver a la lista de entrenadores

@@ -1,22 +1,27 @@
 extends ../templates/layout
 
 block content
-  h1 Lista de Entrenadores
-  table
-    thead
-      tr
-        th ID
-        th Nombre
-        th Especialidad
-        th Acciones
-    tbody
-      each entrenador in entrenadores
-        tr
-          td= entrenador.Id_entrenador
-          td= entrenador.nombre
-          td= entrenador.especialidad
-          td
-            a(href=`/entrenadores/edit/${entrenador.Id_entrenador}`) Editar
-            |
-            a(href=`/entrenadores/delete/${entrenador.Id_entrenador}`) Eliminar
-  a(href="/entrenadores/add") Agregar Nuevo Entrenador
+    div.container 
+        h3 Listado de entrenadores:
+        table.table
+            thead 
+                tr 
+                    th id_entrenador
+                    th Nombre 
+                    th Especialidad 
+                    th Nivel de experiencia 
+                    th Borrar 
+                    th Editar
+            tbody 
+                each entrenador in entrenadores 
+                    tr 
+                        td=entrenador.id_entrenador
+                        td=entrenador.nombre
+                        td=entrenador.especialidad
+                        td=entrenador.nivel_experiencia 
+                        td 
+                            a(href=`/entrenadores/delete/${entrenador.id_entrenador}`) Borrar
+                        td
+                            a(href=`/entrenadores/edit/${entrenador.id_entrenador}`) Editar
+        p 
+            a(href=`/entrenadores/add`) Añadir

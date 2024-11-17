@@ -8,7 +8,19 @@ block content
       input(type="text" name="nombre" id="nombre" required)
     div
       label(for="especialidad") Especialidad:
-      input(type="text" name="especialidad" id="especialidad" required)
+      select(name="especialidad" id="especialidad" required)
+        option(value="peso") Peso
+        option(value="yoga") Yoga
+        option(value="yoga") Cardio
+        option(value="spinning") Spinning
+        option(value="crossfit") Crossfit
+    div
+      label(for="nivel_experiencia") Nivel de experiencia:
+      select(name="nivel_experiencia" id="nivel_experiencia" required)
+        option(value="principiante") Principiante
+        option(value="intermedio") Intermedio
+        option(value="avanzado") Avanzado
+        option(value="experto") Experto
     div
       button(type="submit") Agregar Entrenador
   a(href="/entrenadores") Volver a la lista de entrenadores

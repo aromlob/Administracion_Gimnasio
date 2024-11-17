@@ -7,18 +7,25 @@ const express = require('express');
 const routes = express.Router();
 const entrenadorController = require('../controllers/entrenadorControllers');
 
+// Ruta para listar entrenadores
 routes.get('/', entrenadorController.entrenador);
 
+// Ruta para mostrar el formulario de añadir un entrenador
 routes.get('/add', entrenadorController.entrenadorAddFormulario);
 
-routes.get('/add', entrenadorController.entrenadorAdd);
+// Ruta para añadir un nuevo entrenador (POST)
+routes.post('/add', entrenadorController.entrenadorAdd);
 
-routes.get('/delete/:Id_entrenador', entrenadorController.entrenadorDeleteFormulario);
+// Ruta para mostrar el formulario de eliminar un entrenador
+routes.get('/delete/:id', entrenadorController.entrenadorDeleteFormulario);
 
-routes.get('/delete/:Id_entrenador', entrenadorController.entrenadorDelete);
+// Ruta para eliminar un entrenador (POST)
+routes.post('/delete/:id', entrenadorController.entrenadorDelete);
 
-routes.get('/edit/:Id_entrenador', entrenadorController.entrenadorEditFormulario);
+// Ruta para mostrar el formulario de editar un entrenador
+routes.get('/edit/:id', entrenadorController.entrenadorEditFormulario);
 
-routes.get('/edit/:Id_entrenador', entrenadorController.entrenadorEdit);
+// Ruta para editar un entrenador (POST)
+routes.post('/edit/:id', entrenadorController.entrenadorEdit);
 
 module.exports = routes;
