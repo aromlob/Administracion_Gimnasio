@@ -1,0 +1,17 @@
+extends ../templates/layout
+
+block content
+
+    div 
+        h3 Asociar sesion al entrenador 
+        if sesiones.length > 0
+            form(action=`/entrenadores/${entrenadorId}/sesiones/add` method="post")
+                label(for="sesionId") Selecciona un plan:
+                select(name="sesionId" id="sesionId" required)
+                    each sesion in sesiones 
+                        option(value=sesion.id)= sesion.id
+                br
+                button(type="submit") Asociar
+        else 
+            p No hay sesiones disponibles para asociar.
+            a(href=`/entrenadores/${entrenadorId}/sesiones`) Volver a la lista de sesiones del entrenador

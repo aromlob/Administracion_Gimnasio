@@ -28,4 +28,14 @@ routes.get('/edit/:id', entrenadorController.entrenadorEditFormulario);
 // Ruta para editar un entrenador (POST)
 routes.post('/edit/:id', entrenadorController.entrenadorEdit);
 
+routes.get('/:id/sesiones',entrenadorController.sesionesPorEntrenadores);
+
+routes.get('/:id/sesiones/add',entrenadorController.asociarEntrenadorSesionAddFormulario);
+
+routes.post('/:id/sesiones/add', entrenadorController.asociarEntrenadorSesionAdd);
+
+routes.get('/:id/sesiones/delete',entrenadorController.desasociarEntrenadoresSesionDeleteFormulario);
+
+routes.post('/:id/sesiones/delete', entrenadorController.desasociarEntrenadorSesionDelete);
+
 module.exports = routes;

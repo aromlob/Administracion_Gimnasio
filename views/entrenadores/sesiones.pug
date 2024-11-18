@@ -1,0 +1,32 @@
+extends ../templates/layout
+
+block content
+    h1 Sesiones del entrenador #{entrenadorData.nombre}
+    form(id="formularioEntrenador") 
+        select(id="entrenador")
+            each entrenador in listaEntrenadores
+                if entrenadorData.id === entrenador.id
+                    option(value=`${entrenador.id}` selected)  #{entrenador.nombre}
+                else
+                    option(value=`${entrenador.id}`)  #{entrenador.nombre}
+    table.table
+        thead
+            tr
+                th ID Entrenador
+                th ID Sesion
+                th Fecha inicio
+                th Hora inicio
+                th Duracion min
+                th Eliminar
+        tbody
+            each entrenador in entrenadores
+                tr
+                    td= entrenador.id
+                    td= entrenador.id
+                    td= entrenador.fecha_inicio
+                    td= entrenador.hora_inicio
+                    td= entrenador.duracion_min
+                    td 
+                        a(href=`/entrenadores/${entrenador.id}/sesiones/delete`) Eliminar
+
+    script(src="/js/sesiones.js")

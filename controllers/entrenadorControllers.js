@@ -215,8 +215,10 @@ exports.sesionesPorEntrenadores = (req, res) => {
                             if (error)
                                 res.send("Error selecionando la sesion del entrenador" + error.message);
                             else{
-                                console.log(response);
-                                res.render("entrenadores/sesiones", { entrenadores: response, entrenadorData:entrenadorData[0] });
+                                db.query('SELECT * FROM entrenador', (errorEntrenador, entrenadoresResponse) => {
+                                    console.log(response);
+                                    res.render("entrenadores/sesiones", { entrenadores: response, entrenadorData:entrenadorData[0], listaEntrenadores: entrenadoresResponse });
+                                });
                             }
                         }
                     );
@@ -294,7 +296,7 @@ exports.desasociarEntrenadoresSesionDeleteFormulario = (req, res) =>{
     }
 }
 
-exports.desasociarClientePlanDelete = (req, res) =>{
+exports.desasociarEntrenadorSesionDelete = (req, res) =>{
 
     const {id} = req.params;
     const {sesionId} = req.body;
