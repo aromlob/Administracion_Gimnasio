@@ -2,14 +2,13 @@ extends ../templates/layout
 
 block content
     div 
-        h3 Desasociar sesion del entrenador 
+        h3 Desasociar sesión del entrenador
         form(action=`/entrenadores/${entrenadorId}/sesiones/delete` method="post")
-            label(for="sesionId") Selecciona un sesion: 
-            select(name="sesionId" id="sesionId" required)
-                each sesion in sesiones 
-                    option(value=sesion.id)= sesion.id 
+            input(type="hidden" name="sesionId" value=`${sesionId}`)
+            p
+                | ¿Estás seguro de que deseas desasociar la sesión con ID: 
+                strong #{entrenadorId}
+                | ?
             br
-            button(type="submit") Desasociar 
-        if sesiones.length === 0
-            p No hay sesiones disponibles para desasociar.
-        a(href=`/entrenadores/${entrenadorId}/sesiones`) Volver a la lista de sesiones del entrenador
+            button(type="submit") Confirmar Desasociación
+        a(href=`/entrenadores/${entrenadorId}/sesiones`) Cancelar y volver a la lista

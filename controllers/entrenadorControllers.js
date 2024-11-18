@@ -250,28 +250,31 @@ exports.asociarEntrenadorSesionAddFormulario = (req, res) =>{
     }
 }
 
-exports.asociarEntrenadorSesionAdd = (req, res) =>{
-    const {id} = req.params;
-    const {sesionId,id_entrenador,id_cliente, hora_inicio, duracion_min} = req.body;
-    const fecha_inicio = new Date().toISOString()
-    const fecha = fecha_inicio.split("T");
-    const fechaSesion = fecha[0];
-    if(isNaN(id) || isNaN(sesionId)){
-        res.send('Error ids inválidos');
-    }else{
-        db.query(
-            `INSERT INTO sesion (fecha_inicio, hora_inicio, duracion_min, id_cliente, id_entrenador) VALUES (?,?,?,?,?)`,
-            [id, sesionId, fechaSesion, hora_inicio, duracion_min,id_cliente, id_entrenador ],
-            (error) =>{
-                if(error){
-                    res.send('Error al asociar el plan con el cliente');
-                }else{
-                    res.redirect(`/entrenadores/${id}/sesiones`);
-                }
+exports.asociarEntrenadorSesionAdd = (req, res) => {
+    const { id } = req.params; // ID del entrenador que viene en la URL
+    const { sesionId, id_cliente, hora_inicio, duracion_min } = req.body;
+
+    const fecha_inicio = new Date().toISOString().split("T")[0];
+
+    if (isNaN(id) || isNaN(sesionId) || isNaN(id_cliente)) {
+        res.send('Error: IDs inválidos');
+    } else {
+        const query = `
+            INSERT INTO sesion (fecha_inicio, hora_inicio, duracion_min, id_cliente, id_entrenador)
+            VALUES (?, ?, ?, ?, ?)`;
+        const values = [fecha_inicio, hora_inicio, duracion_min, id_cliente, id];
+
+        db.query(query, values, (error) => {
+            if (error) {
+                console.error('Error al ejecutar la consulta:', error);
+                res.send('Error al asociar la sesión con el entrenador');
+            } else {
+                res.redirect(`/entrenadores/${id}/sesiones`);
             }
-        );
+        });
     }
-}
+};
+
 
 exports.desasociarEntrenadoresSesionDeleteFormulario = (req, res) =>{
     const {id} = req.params;

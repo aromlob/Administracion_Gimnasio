@@ -11,7 +11,13 @@ block content
                     each sesion in sesiones 
                         option(value=sesion.id)= sesion.id
                 br
+                label(for="hora_inicio") Hora de inicio:
+                input(type="time" name="hora_inicio" id="hora_inicio" required)
+                br
+                label(for="duracion_min") Duración (minutos):
+                input(type="number" name="duracion_min" id="duracion_min" min="1" required)
+                br
+                label(for="id_cliente") ID Cliente:
+                input(type="number" name="id_cliente" id="id_cliente" required)
+                br
                 button(type="submit") Asociar
-        else 
-            p No hay sesiones disponibles para asociar.
-            a(href=`/entrenadores/${entrenadorId}/sesiones`) Volver a la lista de sesiones del entrenador
