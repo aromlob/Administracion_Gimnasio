@@ -6,12 +6,13 @@ block content
         table.table
             thead 
                 tr 
-                    th id_entrenador
+                    th Id entrenador
                     th Nombre 
                     th Especialidad 
                     th Nivel de experiencia 
                     th Borrar 
                     th Editar
+                    th Ver sesion
             tbody 
                 each entrenador in entrenadores 
                     tr 
@@ -23,5 +24,7 @@ block content
                             a(href=`/entrenadores/delete/${entrenador.id}`) Borrar
                         td
                             a(href=`/entrenadores/edit/${entrenador.id}`) Editar
+                        td
+                            a(href=`/entrenadores/edit/${entrenador.id}`) Sesiones
         p 
             a(href=`/entrenadores/add`) Añadir

@@ -11,8 +11,6 @@ block content
           th Fecha
           th Hora de inicio
           th Duración
-          th Editar 
-          th Eliminar
       tbody
         each sesion in sesiones
           tr
@@ -22,9 +20,3 @@ block content
             td=sesion.fecha_inicio
             td=sesion.hora_inicio
             td=sesion.duracion_min
-            td
-              a(href=`/sesiones/edit/${sesion.id}`) Editar
-            td
-              a(href=`/sesiones/delete/${sesion.id}`) Eliminar
-  p
-    a(href='/sesiones/add') Agregar nueva sesión

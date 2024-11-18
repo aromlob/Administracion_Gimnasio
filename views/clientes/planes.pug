@@ -2,6 +2,13 @@ extends ../templates/layout
 
 block content
     h1 Planes del cliente #{clienteData.nombre}
+    form(id="formularioCliente") 
+        select(id="cliente")
+            each cliente in listaClientes
+                if clienteData.id === cliente.id
+                    option(value=`${cliente.id}` selected)  #{cliente.nombre}
+                else
+                    option(value=`${cliente.id}`)  #{cliente.nombre}
     table.table
         thead
             tr
@@ -19,3 +26,5 @@ block content
                     td= cliente.fecha_inicio
                     td 
                         a(href=`/clientes/${cliente.id}/planes/delete`) Eliminar
+
+    script(src="/js/planes.js") 

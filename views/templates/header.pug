@@ -1,6 +1,6 @@
 nav.navbar.navbar-expand-lg.bg-light
   .container-fluid
-    a.navbar-brand(href='#') Gestión Académica
+    a.navbar-brand(href='#') Gestión Gimnasio
     button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
       span.navbar-toggler-icon
     .collapse.navbar-collapse#navbarSupportedContent
@@ -9,14 +9,14 @@ nav.navbar.navbar-expand-lg.bg-light
           a.nav-link(href='#') 
         li.nav-item
           a.nav-link(href="/") Inicio
-        if user
-          li.nav-item
-            a.nav-link(href="/alumnos") Alumnos
-          li.nav-item
-            a.nav-link(href="/asignaturas") Asignaturas
-          li.nav-item
-            a.nav-link(href="/auth/logout") Cerrar sesión
-        else
+        //-if user
+        li.nav-item
+          a.nav-link(href="/clientes") Clientes
+        li.nav-item
+          a.nav-link(href="/entrenadores") Entrenadores
+        li.nav-item
+          a.nav-link(href="/auth/logout") Cerrar sesión
+        //-else
           li
             a.nav-link(href="/auth/login") Iniciar Sesión
         li.nav-item.dropdown

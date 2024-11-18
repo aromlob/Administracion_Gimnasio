@@ -166,8 +166,10 @@ exports.planesPorCliente = (req, res) => {
                             if (error)
                                 res.send("Error selecionando el plan cliente" + error.message);
                             else{
-                                console.log(response);
-                                res.render("clientes/planes", { clientes: response, clienteData:clienteData[0] });
+                                db.query('SELECT * FROM cliente', (errorCliente, clientesResponse) => {
+                                    console.log(response);
+                                    res.render("clientes/planes", { clientes: response, clienteData:clienteData[0], listaClientes: clientesResponse });
+                                });
                             }
                         }
                     );
