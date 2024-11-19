@@ -1,36 +1,36 @@
 extends ../templates/layout
 
 block content
-    div.container 
+    div.container
         h3 Listado de clientes:
         table.table
-            thead 
-                tr 
-                    th id_cliente 
-                    th Nombre 
-                    th Email 
-                    th Fecha de Registro 
-                    th Numero de telefono 
-                    th Borrar 
+            thead
+                tr
+                    th ID del Cliente
+                    th Nombre
+                    th Email
+                    th Fecha de Registro
+                    th Número de Teléfono
+                    th Borrar
                     th Editar
-                    th Mostrar planes
-                    th Añadir planes
-
-            tbody 
-                each cliente in clientes 
-                    tr 
-                        td=cliente.id
-                        td=cliente.nombre 
-                        td=cliente.email 
-                        td=cliente.fecha_registro 
-                        td=cliente.numero_telefono 
-                        td 
-                            a(href=`/clientes/delete/${cliente.id}`) Borrar
+                    th Mostrar Planes
+                    th Añadir Planes
+            tbody
+                // Recorre la lista de clientes y genera una fila para cada uno
+                each cliente in clientes
+                    tr
+                        td= cliente.id
+                        td= cliente.nombre
+                        td= cliente.email
+                        td= cliente.fecha_registro
+                        td= cliente.numero_telefono
                         td
-                            a(href=`/clientes/edit/${cliente.id}`) Editar
-                        td 
-                            a(href=`/clientes/${cliente.id}/planes`) Ver planes
-                        td 
-                            a(href=`/clientes/${cliente.id}/planes/add`) Añadir planes
-        p 
-            a(href=`/clientes/add`) Añadir
+                            a.btn.btn-danger(href=`/clientes/delete/${cliente.id}`) Borrar
+                        td
+                            a.btn.btn-warning(href=`/clientes/edit/${cliente.id}`) Editar
+                        td
+                            a.btn.btn-info(href=`/clientes/${cliente.id}/planes`) Ver planes
+                        td
+                            a.btn.btn-success(href=`/clientes/${cliente.id}/planes/add`) Añadir planes
+        p
+            a.btn.btn-primary(href=`/clientes/add`) Añadir

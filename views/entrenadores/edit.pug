@@ -1,26 +1,32 @@
 extends ../templates/layout
 
 block content
-  h1 Editar Entrenador
-  form(action=`/entrenadores/edit/${entrenador.id}` method="POST")
-    div
-      label(for="nombre") Nombre:
-      input(type="text" name="nombre" id="nombre" value=entrenador.nombre required)
-    div
-      label(for="especialidad") Especialidad:
-      select(name="especialidad" id="especialidad" value=entrenador.especialidad required)
-        option(value="pesas") Pesas
-        option(value="yoga") Yoga
-        option(value="yoga") Cardio
-        option(value="spinning") Spinning
-        option(value="crossfit") Crossfit
-    div
-      label(for="nivel_experiencia") Nivel de experiencia:
-      select(name="nivel_experiencia" id="nivel_experiencia" value=entrenador.nivel_experiencia required)
-        option(value="principiante") Principiante
-        option(value="intermedio") Intermedio
-        option(value="avanzado") Avanzado
-        option(value="experto") Experto
-    div
-      button(type="submit") Guardar Cambios
-  a(href="/entrenadores") Volver a la lista de entrenadores
+  div.container
+    h1 Editar Entrenador
+
+    form(action=`/entrenadores/edit/${entrenador.id}` method="POST")
+      div.form-group
+        label(for="nombre") Nombre:
+        input(type="text" name="nombre" id="nombre" class="form-control" value=entrenador.nombre required)
+
+      div.form-group
+        label(for="especialidad") Especialidad:
+        select(name="especialidad" id="especialidad" class="form-control" required)
+          option(value="pesas" selected=entrenador.especialidad === 'pesas') Pesas
+          option(value="yoga" selected=entrenador.especialidad === 'yoga') Yoga
+          option(value="cardio" selected=entrenador.especialidad === 'cardio') Cardio
+          option(value="spinning" selected=entrenador.especialidad === 'spinning') Spinning
+          option(value="crossfit" selected=entrenador.especialidad === 'crossfit') Crossfit
+
+      div.form-group
+        label(for="nivel_experiencia") Nivel de experiencia:
+        select(name="nivel_experiencia" id="nivel_experiencia" class="form-control" required)
+          option(value="principiante" selected=entrenador.nivel_experiencia === 'principiante') Principiante
+          option(value="intermedio" selected=entrenador.nivel_experiencia === 'intermedio') Intermedio
+          option(value="avanzado" selected=entrenador.nivel_experiencia === 'avanzado') Avanzado
+          option(value="experto" selected=entrenador.nivel_experiencia === 'experto') Experto
+
+      div.form-group
+        button(type="submit" class="btn btn-primary") Guardar Cambios
+
+    a(href="/entrenadores" class="btn btn-secondary mt-3") Volver a la lista de entrenadores

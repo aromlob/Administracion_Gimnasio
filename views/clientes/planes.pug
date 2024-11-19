@@ -2,20 +2,26 @@ extends ../templates/layout
 
 block content
     h1 Planes del cliente #{clienteData.nombre}
+    
+    // Formulario para seleccionar cliente
     form(id="formularioCliente") 
-        select(id="cliente")
-            each cliente in listaClientes
-                if clienteData.id === cliente.id
-                    option(value=`${cliente.id}` selected)  #{cliente.nombre}
-                else
-                    option(value=`${cliente.id}`)  #{cliente.nombre}
-    table.table
+        div.form-group
+            label(for="cliente") Seleccionar Cliente
+            select(id="cliente" class="form-control")
+                each cliente in listaClientes
+                    if clienteData.id === cliente.id
+                        option(value=`${cliente.id}` selected)  #{cliente.nombre}
+                    else
+                        option(value=`${cliente.id}`)  #{cliente.nombre}
+    
+    // Tabla para mostrar los planes del cliente seleccionado
+    table.table.table-striped
         thead
             tr
                 th ID Cliente
-                th Nombre plan
+                th Nombre del Plan
                 th Precio
-                th fecha inicio
+                th Fecha de Inicio
                 th Eliminar
         tbody
             each cliente in clientes
@@ -25,6 +31,7 @@ block content
                     td= cliente.precio
                     td= cliente.fecha_inicio
                     td 
-                        a(href=`/clientes/${cliente.id}/planes/delete`) Eliminar
+                        a.btn.btn-danger(href=`/clientes/${cliente.id}/planes/delete`) Eliminar
 
-    script(src="/js/planes.js") 
+    // Script externo para interacciones en el cliente (como eliminar un plan)
+    script(src="/js/planes.js")

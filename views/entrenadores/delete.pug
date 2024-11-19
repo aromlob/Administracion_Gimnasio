@@ -1,17 +1,24 @@
 extends ../templates/layout
 
 block content
-  h1 Confirmar Eliminación
-  p ¿Estás seguro de que deseas eliminar este entrenador?
-  form(action=`/entrenadores/delete/${entrenador.id}` method="POST")
-    div
-      label(for="nombre") Nombre:
-      input(type="text" name="nombre" id="nombre" value=entrenador.nombre readonly="readonly" required)
-    div
-      label(for="especialidad") Especialidad:
-      input(type="text" name="especialidad" id="especialidad" value=entrenador.especialidad readonly="readonly" required)
-    div
-      label(for="nivel_experiencia") Nivel de experiencia:
-      input(type="text" name="nivel_experiencia" id="nivel_experiencia" value=entrenador.nivel_experiencia readonly="readonly" required)
-    button(type="submit") Eliminar
-  a(href="/entrenadores") Volver a la lista de entrenadores
+  div.container
+    h1 Confirmar Eliminación
+    p ¿Estás seguro de que deseas eliminar este entrenador?
+
+    form(action=`/entrenadores/delete/${entrenador.id}` method="POST")
+      div.form-group
+        label(for="nombre") Nombre:
+        input(type="text" name="nombre" id="nombre" value=entrenador.nombre class="form-control" readonly="readonly" required)
+
+      div.form-group
+        label(for="especialidad") Especialidad:
+        input(type="text" name="especialidad" id="especialidad" value=entrenador.especialidad class="form-control" readonly="readonly" required)
+
+      div.form-group
+        label(for="nivel_experiencia") Nivel de experiencia:
+        input(type="text" name="nivel_experiencia" id="nivel_experiencia" value=entrenador.nivel_experiencia class="form-control" readonly="readonly" required)
+
+      div.form-group
+        button(type="submit" class="btn btn-danger") Eliminar
+
+    a(href="/entrenadores" class="btn btn-secondary mt-3") Volver a la lista de entrenadores

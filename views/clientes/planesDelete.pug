@@ -1,15 +1,21 @@
 extends ../templates/layout
 
 block content
-    div 
-        h3 Desasociar plan del cliente 
-        form(action=`/clientes/${clienteId}/planes/delete` method="post")
-            label(for="planId") Selecciona un plan: 
-            select(name="planId" id="planId" required)
-                each plan in planes 
-                    option(value=plan.id)= plan.nombre_plan 
-            br
-            button(type="submit") Desasociar 
-        if planes.length === 0
+    div.container
+        h3 Desasociar plan del cliente
+        
+        // Verifica si hay planes disponibles
+        if planes.length > 0
+            form(action=`/clientes/${clienteId}/planes/delete` method="post")
+                div.form-group
+                    label(for="planId") Selecciona un plan:
+                    select(name="planId" id="planId" class="form-control" required)
+                        each plan in planes
+                            option(value=plan.id)= plan.nombre_plan
+                
+                br
+                button(type="submit" class="btn btn-danger") Desasociar
+        else 
             p No hay planes disponibles para desasociar.
-        a(href=`/clientes/${clienteId}/planes`) Volver a la lista de planes del cliente
+        
+        a(href=`/clientes/${clienteId}/planes` class="btn btn-secondary") Volver a la lista de planes del cliente

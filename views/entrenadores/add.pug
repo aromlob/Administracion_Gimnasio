@@ -1,26 +1,32 @@
 extends ../templates/layout
 
 block content
-  h1 Agregar Entrenador
-  form(action="/entrenadores/add" method="POST")
-    div
-      label(for="nombre") Nombre:
-      input(type="text" name="nombre" id="nombre" required)
-    div
-      label(for="especialidad") Especialidad:
-      select(name="especialidad" id="especialidad" required)
-        option(value="pesas") Pesas
-        option(value="yoga") Yoga
-        option(value="cardio") Cardio
-        option(value="spinning") Spinning
-        option(value="crossfit") Crossfit
-    div
-      label(for="nivel_experiencia") Nivel de experiencia:
-      select(name="nivel_experiencia" id="nivel_experiencia" required)
-        option(value="principiante") Principiante
-        option(value="intermedio") Intermedio
-        option(value="avanzado") Avanzado
-        option(value="experto") Experto
-    div
-      button(type="submit") Agregar Entrenador
-  a(href="/entrenadores") Volver a la lista de entrenadores
+  div.container
+    h1 Agregar Entrenador
+
+    form(action="/entrenadores/add" method="POST")
+      div.form-group
+        label(for="nombre") Nombre:
+        input(type="text" name="nombre" id="nombre" class="form-control" required)
+
+      div.form-group
+        label(for="especialidad") Especialidad:
+        select(name="especialidad" id="especialidad" class="form-control" required)
+          option(value="pesas") Pesas
+          option(value="yoga") Yoga
+          option(value="cardio") Cardio
+          option(value="spinning") Spinning
+          option(value="crossfit") Crossfit
+
+      div.form-group
+        label(for="nivel_experiencia") Nivel de experiencia:
+        select(name="nivel_experiencia" id="nivel_experiencia" class="form-control" required)
+          option(value="principiante") Principiante
+          option(value="intermedio") Intermedio
+          option(value="avanzado") Avanzado
+          option(value="experto") Experto
+
+      div.form-group
+        button(type="submit" class="btn btn-primary") Agregar Entrenador
+
+    a(href="/entrenadores" class="btn btn-secondary mt-3") Volver a la lista de entrenadores
