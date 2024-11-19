@@ -1,19 +1,24 @@
 extends ../templates/layout
 
 block content
-  h1 Editar Plan de Membresía
-  form(action=`/planesMembresias/edit/${plan_membresia.id}` method="POST")
-    label(for="nombre_plan") Nombre:
-    select(name="nombre_plan" id="nombre_plan" value=plan_membresia.nombre_plan required)
-      option(value="Básico Anual") Básico Anual
-      option(value="Premium Mensual") Premium Mensual
-      option(value="Elite Mensual") Elite Mensual
-    div
-      label(for="precio") Precio:
-      input(type="number" name="precio" id="precio" value=plan_membresia.precio required)
-    div 
-      label(for="duracion_meses") Duracion de meses:
-      input(type="number" name="duracion_meses" id="duracion_meses" value=plan_membresia.duracion_meses required)
-    div
-      button(type="submit") Guardar Cambios
-  a(href="/planesMembresias") Volver a la lista de planes
+  h1.text-center.mb-4 Editar Plan de Membresía
+  
+  form(action=`/planesMembresias/edit/${plan_membresia.id}` method="POST" class="container")
+    .mb-3
+      label(for="nombre_plan" class="form-label") Nombre:
+      select(name="nombre_plan" id="nombre_plan" class="form-select" value=plan_membresia.nombre_plan required)
+        option(value="Básico Anual") Básico Anual
+        option(value="Premium Mensual") Premium Mensual
+        option(value="Elite Mensual") Elite Mensual
+
+    .mb-3
+      label(for="precio" class="form-label") Precio:
+      input(type="number" name="precio" id="precio" class="form-control" value=plan_membresia.precio required)
+
+    .mb-3
+      label(for="duracion_meses" class="form-label") Duración de meses:
+      input(type="number" name="duracion_meses" id="duracion_meses" class="form-control" value=plan_membresia.duracion_meses required)
+
+    button(type="submit" class="btn btn-primary") Guardar Cambios
+
+  a(href="/planesMembresias" class="btn btn-secondary mt-3") Volver a la lista de planes

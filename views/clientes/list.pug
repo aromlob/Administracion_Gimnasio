@@ -1,36 +1,46 @@
 extends ../templates/layout
 
 block content
-    div.container
-        h3 Listado de clientes:
-        table.table
-            thead
-                tr
-                    th ID del Cliente
-                    th Nombre
-                    th Email
-                    th Fecha de Registro
-                    th Número de Teléfono
-                    th Borrar
-                    th Editar
-                    th Mostrar Planes
-                    th Añadir Planes
-            tbody
-                // Recorre la lista de clientes y genera una fila para cada uno
-                each cliente in clientes
+    div.container.mt-5
+        h3.text-center.text-primary.mb-4.shadow-sm.bg-light.p-3.rounded-3 Listado de Clientes
+        div.table-responsive
+            table.table.table-hover.table-bordered.table-striped.align-middle
+                thead.table-dark
                     tr
-                        td= cliente.id
-                        td= cliente.nombre
-                        td= cliente.email
-                        td= cliente.fecha_registro
-                        td= cliente.numero_telefono
-                        td
-                            a.btn.btn-danger(href=`/clientes/delete/${cliente.id}`) Borrar
-                        td
-                            a.btn.btn-warning(href=`/clientes/edit/${cliente.id}`) Editar
-                        td
-                            a.btn.btn-info(href=`/clientes/${cliente.id}/planes`) Ver planes
-                        td
-                            a.btn.btn-success(href=`/clientes/${cliente.id}/planes/add`) Añadir planes
-        p
-            a.btn.btn-primary(href=`/clientes/add`) Añadir
+                        th.text-center ID del Cliente
+                        th.text-center Nombre
+                        th.text-center Email
+                        th.text-center Fecha de Registro
+                        th.text-center Número de Teléfono
+                        th.text-center Borrar
+                        th.text-center Editar
+                        th.text-center Mostrar Planes
+                        th.text-center Añadir Planes
+                tbody
+                    each cliente in clientes
+                        tr
+                            td.text-center= cliente.id
+                            td.text-center= cliente.nombre
+                            td.text-center= cliente.email
+                            td.text-center= cliente.fecha_registro
+                            td.text-center= cliente.numero_telefono
+                            td.text-center
+                                a.btn.btn-danger.btn-sm(href=`/clientes/delete/${cliente.id}`)
+                                    i.fas.fa-trash-alt.me-1
+                                    |  Borrar
+                            td.text-center
+                                a.btn.btn-warning.btn-sm(href=`/clientes/edit/${cliente.id}`)
+                                    i.fas.fa-edit.me-1
+                                    |  Editar
+                            td.text-center
+                                a.btn.btn-info.btn-sm(href=`/clientes/${cliente.id}/planes`)
+                                    i.fas.fa-eye.me-1
+                                    |  Ver planes
+                            td.text-center
+                                a.btn.btn-success.btn-sm(href=`/clientes/${cliente.id}/planes/add`)
+                                    i.fas.fa-plus-circle.me-1
+                                    |  Añadir planes
+        div.text-center.mt-4
+            a.btn.btn-primary.btn-lg.shadow-sm(href=`/clientes/add`)
+                i.fas.fa-user-plus.me-2 
+                |  Añadir Nuevo Cliente

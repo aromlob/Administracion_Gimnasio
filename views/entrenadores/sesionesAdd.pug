@@ -2,22 +2,28 @@ extends ../templates/layout
 
 block content
 
-    div 
-        h3 Asociar sesion al entrenador 
+    div.container.mt-5
+        h3.text-center.text-primary.mb-4 Asociar sesión al entrenador
+
         if sesiones.length > 0
-            form(action=`/entrenadores/${entrenadorId}/sesiones/add` method="post")
-                label(for="sesionId") Selecciona un plan:
-                select(name="sesionId" id="sesionId" required)
-                    each sesion in sesiones 
-                        option(value=sesion.id)= sesion.id
-                br
-                label(for="hora_inicio") Hora de inicio:
-                input(type="time" name="hora_inicio" id="hora_inicio" required)
-                br
-                label(for="duracion_min") Duración (minutos):
-                input(type="number" name="duracion_min" id="duracion_min" min="1" required)
-                br
-                label(for="id_cliente") ID Cliente:
-                input(type="number" name="id_cliente" id="id_cliente" required)
-                br
-                button(type="submit") Asociar
+            form(action=`/entrenadores/${entrenadorId}/sesiones/add` method="post" class="bg-light p-4 rounded shadow-sm")
+                div.mb-3
+                    label(for="sesionId" class="form-label") Selecciona un plan:
+                    select(name="sesionId" id="sesionId" class="form-select" required)
+                        each sesion in sesiones
+                            option(value=sesion.id)= sesion.id
+                div.mb-3
+                    label(for="hora_inicio" class="form-label") Hora de inicio:
+                    input(type="time" name="hora_inicio" id="hora_inicio" class="form-control" required)
+                div.mb-3
+                    label(for="duracion_min" class="form-label") Duración (minutos):
+                    input(type="number" name="duracion_min" id="duracion_min" class="form-control" min="1" required)
+                div.mb-3
+                    label(for="id_cliente" class="form-label") ID Cliente:
+                    input(type="number" name="id_cliente" id="id_cliente" class="form-control" required)
+                div.text-center.mt-4
+                    button(type="submit" class="btn btn-primary btn-lg") Asociar
+
+        else
+            div.alert.alert-warning.text-center.mt-4
+                | No hay sesiones disponibles para asociar.

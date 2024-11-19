@@ -1,22 +1,26 @@
 extends ../templates/layout
 
 block content
-  h1 Sesiones
-  table.table
-      thead
-        tr
-          th Sesion id
-          th Cliente
-          th Entrenador
-          th Fecha
-          th Hora de inicio
-          th Duración
-      tbody
-        each sesion in sesiones
-          tr
-            td=sesion.id
-            td=sesion.id_cliente
-            td=sesion.id_entrenador
-            td=sesion.fecha_inicio
-            td=sesion.hora_inicio
-            td=sesion.duracion_min
+  div.container.mt-5
+        h3.text-center.text-primary.mb-4.shadow-sm.p-3.rounded-3.bg-light Listado de Sesiones
+        div.table-responsive
+            table.table.table-hover.table-bordered.table-striped.align-middle
+                thead.table-dark
+                  tr
+                    th#session-id Sesión ID
+                    th#client-id Cliente
+                    th#trainer-id Entrenador
+                    th#start-date Fecha
+                    th#start-time Hora de inicio
+                    th#duration Duración
+
+                tbody
+                  each sesion in sesiones
+                    tr
+                      td= sesion.id
+                      td= sesion.id_cliente
+                      td= sesion.id_entrenador
+                      td= sesion.fecha_inicio
+                      td= sesion.hora_inicio
+                      td= sesion.duracion_min
+

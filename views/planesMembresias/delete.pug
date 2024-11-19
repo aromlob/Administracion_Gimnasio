@@ -1,17 +1,27 @@
 extends ../templates/layout
 
 block content
-  h1 Confirmar Eliminación
-  p ¿Estás seguro de que deseas eliminar este plan de membresía?
-  form(action=`/planesMembresias/delete/${plan_membresia.id}` method="POST")
-    div
-      label(for="nombre_plan") Nombre:
-      input(type="text" name="nombre_plan" id="nombre_plan" value=plan_membresia.nombre_plan readonly="readonly" required)
-    div
-      label(for="precio") Precio:
-      input(type="text" name="precio" id="precio" value=plan_membresia.precio readonly="readonly" required)
-    div
-      label(for="duracion_meses") Duracion de meses:
-      input(type="text" name="duracion_meses" id="duracion_meses" value=plan_membresia.duracion_meses readonly="readonly" required)
-    button(type="submit") Eliminar
-  a(href="/planesMembresias") Volver a la lista de planes
+    div.container.mt-5
+        h1.text-center.text-danger.mb-4 Confirmar Eliminación
+
+        p.text-center.text-danger.mb-4
+            | ¿Estás seguro de que deseas eliminar este plan de membresía?
+        
+        form(action=`/planesMembresias/delete/${plan_membresia.id}` method="POST" class="bg-light p-4 rounded shadow-sm")
+            div.mb-3
+                label(for="nombre_plan" class="form-label") Nombre:
+                input(type="text" name="nombre_plan" id="nombre_plan" class="form-control" value=plan_membresia.nombre_plan readonly="readonly" required)
+
+            div.mb-3
+                label(for="precio" class="form-label") Precio:
+                input(type="text" name="precio" id="precio" class="form-control" value=plan_membresia.precio readonly="readonly" required)
+
+            div.mb-3
+                label(for="duracion_meses" class="form-label") Duración de meses:
+                input(type="text" name="duracion_meses" id="duracion_meses" class="form-control" value=plan_membresia.duracion_meses readonly="readonly" required)
+
+            div.text-center.mt-4
+                button(type="submit" class="btn btn-danger btn-lg") Eliminar
+
+        div.text-center.mt-4
+            a(href="/planesMembresias" class="btn btn-secondary btn-lg") Volver a la lista de planes

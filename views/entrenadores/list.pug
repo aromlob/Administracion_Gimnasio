@@ -1,33 +1,44 @@
 extends ../templates/layout
 
 block content
-    div.container 
-        h3 Listado de entrenadores:
-        table.table
-            thead 
-                tr 
-                    th Id entrenador
-                    th Nombre 
-                    th Especialidad 
-                    th Nivel de experiencia 
-                    th Borrar 
-                    th Editar
-                    th Ver sesion
-                    th Añadir sesion
-            tbody 
-                each entrenador in entrenadores 
-                    tr 
-                        td=entrenador.id
-                        td=entrenador.nombre
-                        td=entrenador.especialidad
-                        td=entrenador.nivel_experiencia 
-                        td 
-                            a(href=`/entrenadores/delete/${entrenador.id}`) Borrar
-                        td
-                            a(href=`/entrenadores/edit/${entrenador.id}`) Editar
-                        td
-                            a(href=`/entrenadores/${entrenador.id}/sesiones`) Sesiones
-                        td
-                            a(href=`/entrenadores/${entrenador.id}/sesiones/add`) Añadir sesiones
-        p 
-            a(href=`/entrenadores/add`) Añadir
+    div.container.mt-5
+        h3.text-center.text-primary.mb-4.shadow-sm.p-3.rounded-3.bg-light Listado de Entrenadores
+        div.table-responsive
+            table.table.table-hover.table-bordered.table-striped.align-middle
+                thead.table-dark
+                    tr
+                        th.text-center Id Entrenador
+                        th.text-center Nombre
+                        th.text-center Especialidad
+                        th.text-center Nivel de Experiencia
+                        th.text-center Borrar
+                        th.text-center Editar
+                        th.text-center Ver Sesión
+                        th.text-center Añadir Sesión
+                tbody
+                    each entrenador in entrenadores
+                        tr
+                            td.text-center= entrenador.id
+                            td.text-center= entrenador.nombre
+                            td.text-center= entrenador.especialidad
+                            td.text-center= entrenador.nivel_experiencia
+                            td.text-center
+                                a.btn.btn-danger.btn-sm(href=`/entrenadores/delete/${entrenador.id}`)
+                                    i.fas.fa-trash-alt.me-1
+                                    |  Borrar
+                            td.text-center
+                                a.btn.btn-warning.btn-sm(href=`/entrenadores/edit/${entrenador.id}`)
+                                    i.fas.fa-edit.me-1
+                                    |  Editar
+                            td.text-center
+                                a.btn.btn-info.btn-sm(href=`/entrenadores/${entrenador.id}/sesiones`)
+                                    i.fas.fa-eye.me-1
+                                    |  Ver Sesión
+                            td.text-center
+                                a.btn.btn-success.btn-sm(href=`/entrenadores/${entrenador.id}/sesiones/add`)
+                                    i.fas.fa-plus-circle.me-1
+                                    |  Añadir
+        div.text-center.mt-4
+            a.btn.btn-primary.btn-lg.shadow-sm(href=`/entrenadores/add`)
+                i.fas.fa-user-plus.me-2 
+                |  Añadir Nuevo Entrenador                            

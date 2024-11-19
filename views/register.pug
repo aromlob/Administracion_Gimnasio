@@ -1,16 +1,18 @@
 extends templates/layout
 
 block content
-    .container 
-        h1 Alta en el sistema
-
-        form.row.g-3(action="/auth/register", method="post") 
+    .container
+        h1.text-center.my-4 Alta en el sistema
+        
+        form.row.g-3(action="/auth/register", method="post")
             
             .col-md-6
                 label.form-label(for="username") Usuario
-                input.form-control(type="text", name="username", id="username", required)
+                input.form-control(type="text", name="username", id="username", placeholder="Ingrese su nombre de usuario", required)
+            
+            .col-md-6
                 label.form-label(for="password") Contraseña
-                input.form-control(type="password", name="password" id="password", required)
-                br            
-            .col-12
+                input.form-control(type="password", name="password", id="password", placeholder="Ingrese su contraseña", required)
+
+        .d-flex.justify-content-center.mt-4
             button.btn.btn-success(type="submit") Sign up!
