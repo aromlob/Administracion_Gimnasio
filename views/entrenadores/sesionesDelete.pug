@@ -3,12 +3,12 @@ extends ../templates/layout
 block content
     div 
         h3 Desasociar sesión del entrenador
-        form(action=`/entrenadores/${entrenadorId}/sesiones/delete` method="post")
-            input(type="hidden" name="sesionId" value=`${sesionId}`)
+        form(action=`/entrenadores/${idEntrenador}/sesiones/delete/${idSesion}` method="post")
+            input(type="hidden" name="idSesion" value=`${idSesion}`)
             p
                 | ¿Estás seguro de que deseas desasociar la sesión con ID: 
-                strong #{entrenadorId}
+                strong #{idSesion}
                 | ?
             br
             button(type="submit") Confirmar Desasociación
-        a(href=`/entrenadores/${entrenadorId}/sesiones`) Cancelar y volver a la lista
+        a(href=`/entrenadores/${idEntrenador}/sesiones`) Cancelar y volver a la lista

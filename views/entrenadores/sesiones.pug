@@ -12,21 +12,19 @@ block content
     table.table
         thead
             tr
-                th ID Entrenador
                 th ID Sesion
                 th Fecha inicio
                 th Hora inicio
                 th Duracion min
                 th Eliminar
         tbody
-            each entrenador in entrenadores
+            each sesion in sesiones
                 tr
-                    td= entrenador.id
-                    td= entrenador.id
-                    td= entrenador.fecha_inicio
-                    td= entrenador.hora_inicio
-                    td= entrenador.duracion_min
+                    td= sesion.id
+                    td= sesion.fecha_inicio
+                    td= sesion.hora_inicio
+                    td= sesion.duracion_min
                     td 
-                        a(href=`/entrenadores/${entrenador.id}/sesiones/delete`) Eliminar
+                        a(href=`/entrenadores/${entrenadorData.id}/sesiones/delete/${sesion.id}`) Eliminar
 
     script(src="/js/sesiones.js")

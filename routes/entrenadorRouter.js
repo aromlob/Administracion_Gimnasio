@@ -34,8 +34,8 @@ routes.get('/:id/sesiones/add',entrenadorController.asociarEntrenadorSesionAddFo
 
 routes.post('/:id/sesiones/add', entrenadorController.asociarEntrenadorSesionAdd);
 
-routes.get('/:id/sesiones/delete',entrenadorController.desasociarEntrenadoresSesionDeleteFormulario);
+routes.get('/:idEntrenador/sesiones/delete/:idSesion',entrenadorController.desasociarEntrenadorSesionDeleteFormulario);
 
-routes.post('/:id/sesiones/delete', entrenadorController.desasociarEntrenadorSesionDelete);
+routes.post('/:idEntrenador/sesiones/delete/:idSesion', entrenadorController.desasociarEntrenadorSesionDelete);
 
 module.exports = routes;

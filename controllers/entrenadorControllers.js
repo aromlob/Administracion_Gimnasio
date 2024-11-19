@@ -217,7 +217,7 @@ exports.sesionesPorEntrenadores = (req, res) => {
                             else{
                                 db.query('SELECT * FROM entrenador', (errorEntrenador, entrenadoresResponse) => {
                                     console.log(response);
-                                    res.render("entrenadores/sesiones", { entrenadores: response, entrenadorData:entrenadorData[0], listaEntrenadores: entrenadoresResponse });
+                                    res.render("entrenadores/sesiones", { sesiones: response, entrenadorData:entrenadorData[0], listaEntrenadores: entrenadoresResponse });
                                 });
                             }
                         }
@@ -276,10 +276,9 @@ exports.asociarEntrenadorSesionAdd = (req, res) => {
 };
 
 
-exports.desasociarEntrenadoresSesionDeleteFormulario = (req, res) =>{
-    const {id} = req.params;
-    
-    if(isNaN(id)){
+exports.desasociarEntrenadorSesionDeleteFormulario = (req, res) =>{
+    const {idEntrenador, idSesion} = req.params;
+    if(isNaN(idEntrenador)|| isNaN(idSesion)){
         res.send('Error id entrenador inválido');
     }else{
         db.query(
@@ -287,12 +286,12 @@ exports.desasociarEntrenadoresSesionDeleteFormulario = (req, res) =>{
             FROM sesion
             JOIN entrenador ON sesion.id_entrenador = entrenador.id
             WHERE sesion.id_entrenador = ?`,
-            [id],
+            [idEntrenador],
             (error, sesiones) =>{
                 if(error){
                     res.send('Error al obtener las sesiones');
                 }else{
-                    res.render('entrenadores/sesionesDelete', {sesiones, entrenadorId: id});
+                    res.render('entrenadores/sesionesDelete', {sesiones, idEntrenador, idSesion});
                 }
             }
         );
@@ -301,19 +300,18 @@ exports.desasociarEntrenadoresSesionDeleteFormulario = (req, res) =>{
 
 exports.desasociarEntrenadorSesionDelete = (req, res) =>{
 
-    const {id} = req.params;
-    const {sesionId} = req.body;
-    if(isNaN(id) || isNaN(sesionId)){
+    const {idEntrenador, idSesion} = req.params;
+    if(isNaN(idEntrenador) || isNaN(idSesion)){
         res.send('Error ids inválidos');
     }else{
         db.query(
-            `DELETE FROM sesion WHERE id_entrenador = ?`,
-            [id, sesionId],
+            `DELETE FROM sesion WHERE id=?`,
+            [idSesion],
             (error) =>{
                 if(error){
                     res.send('Error al asociar el plan con el cliente');
                 }else{
-                    res.redirect(`/entrenadores/${id}/sesiones`);
+                    res.redirect(`/entrenadores/${idEntrenador}/sesiones`);
                 }
             }
         );
