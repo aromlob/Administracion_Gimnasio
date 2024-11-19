@@ -10,7 +10,7 @@ exports.sesion = (req, res) => {
         'SELECT * FROM sesion',
         (err, response) => {
             if (err) res.send('Error al buscar las sesiones');
-            else res.render('sesiones/list', { sesiones: response ,username : req.session.user});
+            else res.render('sesiones/list', { sesiones: response});
         }
     );
 };

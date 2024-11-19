@@ -9,7 +9,7 @@ const db = require("../db");
 exports.cliente = (req, res) => {
     db.query(`SELECT * FROM cliente`, (err, response) => {
         if (err) res.send("Error al buscar el cliente");
-        else res.render("clientes/list", { clientes: response,username : req.session.user});
+        else res.render("clientes/list", { clientes: response});
     });
 };
 /**

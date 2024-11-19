@@ -51,7 +51,8 @@ app.use((req,res,next)=>{
             return res.redirect('/auth/login');
         }
     } else {
-        // ya estamos logeados        
+        // ya estamos logeados
+        res.locals.username = req.session.user
         next();
     }
 });
