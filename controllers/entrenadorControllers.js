@@ -18,7 +18,7 @@ exports.entrenador = (req, res) => {
             if (err) {
                 res.send('ERROR al hacer la consulta: ' + err.message);
             } else {
-                res.render('entrenadores/list', { entrenadores: response });
+                res.render('entrenadores/list', { entrenadores: response, username : req.session.user });
             }
         }
     );

@@ -48,7 +48,7 @@ exports.login = (req, res) => {
                         res.render('mensaje', { tituloPagina: 'LOGIN', mensajePagina: 'Usuario desactivado' });
                     }
                 } else {
-                    res.render('mensaje', { tituloPagina: 'LOGIN', mensajePagina: 'Usuario no encontrado o credenciales inválidas' });
+                    res.render('mensaje', {username : req.session.user,tituloPagina: 'LOGIN', mensajePagina: 'Usuario no encontrado o credenciales inválidas' });
                 }
             }
         }
