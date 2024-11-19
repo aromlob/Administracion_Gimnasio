@@ -105,19 +105,24 @@ exports.entrenadorDelete = (req, res) => {
     if (isNaN(id)) {
         res.send('ERROR BORRANDO');
     } else {
-        db.query(
-            'DELETE FROM entrenador WHERE id=?',
-            [id],
-            (error, respuesta) => {
+        db.query('DELETE FROM sesion WHERE id_entrenador = ?', 
+            [id], (error) => {
                 if (error) {
-                    res.send('ERROR borrando entrenador: ' + error.message);
+                    res.send('ERROR eliminando sesiones asociadas: ' + error.message);
                 } else {
-                    res.redirect('/entrenadores');
+                    db.query('DELETE FROM entrenador WHERE id = ?', 
+                        [id], (error) => {
+                            if (error) {
+                                res.send('ERROR borrando entrenador: ' + error.message);
+                            } else {
+                                res.redirect('/entrenadores');
+                            }
+                    });
                 }
-            }
-        );
+        });
     }
 };
+
 
 /**
  * Controlador para mostrar el formulario para editar un entrenador
