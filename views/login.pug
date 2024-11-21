@@ -1,24 +1,39 @@
 extends templates/layout
 
 block content
-    .container 
-        h1.text-center.my-4 Login en el sistema
-        
-        form(action="/auth/login", method="post")
-            .mb-3
-                label.form-label(for="username") Nombre de Usuario
-                input.form-control(type="text", name="username", id="username", placeholder="Ingrese su nombre de usuario" required)
-            
-            .mb-3
-                label.form-label(for="password") Contraseña
-                .input-group
-                    input.form-control(type="password", name="password", id="password", placeholder="Ingrese su contraseña" required)
-                    button.btn.btn-outline-secondary#togglePassword(type="button")
-                        i.fas.fa-eye
+    .container.mt-5
+        .row.justify-content-center
+            .col-md-6
+                .card.shadow-lg
+                    .card-header.bg-primary.text-white.text-center
+                        h3.text-white
+                            i.fas.fa-sign-in-alt.me-2
+                            | Login en el sistema
+                    .card-body
+                        form(action="/auth/login", method="post") 
+                            .mb-3
+                                label.form-label(for="username") 
+                                    i.fas.fa-user.me-2
+                                    | Nombre de Usuario
+                                input.form-control(type="text", name="username", id="username" placeholder="Ingrese su nombre de usuario" required)
 
-            .d-flex.justify-content-center.mt-3
-                button.btn.btn-primary(type="submit") Iniciar sesión
+                            .mb-3
+                                label.form-label(for="password") 
+                                    i.fas.fa-lock.me-2
+                                    | Contraseña
+                                .input-group
+                                    input.form-control(type="password", name="password", id="password" placeholder="Ingrese su contraseña" required)
+                                    button.btn.btn-outline-secondary#togglePassword(type="button")
+                                        i.fas.fa-eye
 
-        p.text-center.mt-4
-            | ¿Sin cuenta? 
-            a(href="/auth/register") Regístrese aquí.
+                            div.text-center.mt-4
+                                button.btn.btn-primary.btn-lg(type="submit") 
+                                    i.fas.fa-sign-in-alt.me-2
+                                    | Iniciar sesión
+
+                        .text-center.mt-3
+                            p.mb-0 ¿Sin usuario? 
+                                a(href="/auth/register" class="text-primary fw-bold") Regístrese aquí.
+
+                    .card-footer.text-center.text-muted
+                        small | Asegúrese de que sus credenciales sean correctas
