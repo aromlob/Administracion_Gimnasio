@@ -1,0 +1,24 @@
+extends ../templates/layout
+
+block content
+    div.container
+        h3.text-center.text-danger.mb-4 Desasociar plan del cliente
+        
+        // Verifica si hay planes disponibles
+        if planes.length > 0
+            form(action=`/clientes/${clienteId}/planes/delete` method="post" class="bg-light p-4 rounded shadow-sm")
+                div.form-group
+                    label(for="planId") Selecciona un plan:
+                    div.position-relative
+                        select(name="planId" id="planId" class="form-control" required)
+                            each plan in planes
+                                option(value=plan.id)= plan.nombre_plan
+                        i.fa-solid.fa-chevron-down.position-absolute(style="right: 15px; top: 50%; transform: translateY(-50%); pointer-events: none;")
+                
+                div.text-center.mt-4
+                    button(type="submit" class="btn btn-danger btn-lg me-3") Confirmar Desasociación
+                    a(href=`/clientes/${clienteId}/planes` class="btn btn-secondary btn-lg") Volver a la lista de planes del cliente
+        else 
+            p.text-center No hay planes disponibles para desasociar.
+            div.text-center.mt-4.mb-4
+                a(href=`/clientes/${clienteId}/planes` class="btn btn-secondary btn-lg") Volver a la lista de planes del cliente

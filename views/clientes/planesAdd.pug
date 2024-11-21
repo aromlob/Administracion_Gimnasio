@@ -1,0 +1,24 @@
+extends ../templates/layout
+
+block content
+    div.container.mt-5.mb-4
+        h3.text-center.text-primary.mb-4 Asociar plan al cliente
+
+        // Verifica si hay planes disponibles
+        if planes.length > 0
+            form(action=`/clientes/${clienteId}/planes/add` method="post" class="bg-light p-4 rounded shadow-sm")
+                div.mb-3
+                    label(for="planId" class="form-label") Selecciona un plan:
+                    select(name="planId" id="planId" class="form-select" required)
+                        each plan in planes
+                            option(value=plan.id)= plan.nombre_plan
+                
+                div.text-center.mt-4
+                    button(type="submit" class="btn btn-primary btn-lg me-3") Asociar
+                    a(href=`/clientes/${clienteId}/planes` class="btn btn-secondary btn-lg") Volver a la lista de planes del cliente
+
+        else 
+            div.alert.alert-warning.text-center.mt-4
+                | No hay planes disponibles para asociar.
+            div.text-center.mt-4
+                a(href=`/clientes/${clienteId}/planes` class="btn btn-secondary btn-lg") Volver a la lista de planes del cliente

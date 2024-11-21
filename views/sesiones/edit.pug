@@ -1,0 +1,23 @@
+extends ../templates/layout
+
+block content
+  h1 Editar Sesion
+  form(action=`/sesiones/edit/${sesion.id}` method="POST")
+    div
+      label(for="fecha_inicio") Fecha de inicio:
+      input(type="date" name="fecha_inicio" id="fecha_inicio" value=sesion.fecha_inicio required)
+    div
+      label(for="hora_inicio") Hora de inicio:
+      input(type="text" name="hora_inicio" id="hora_inicio" value=sesion.hora_inicio required)
+    div
+      label(for="duracion_min") Duración:
+      input(type="text" name="duracion_min" id="duracion_min" value=sesion.duracion_min required)
+    div
+      label(for="id_cliente") Id Cliente:
+      input(type="text" name="id_cliente" id="id_cliente" value=sesion.id_cliente required)
+    div
+      label(for="id_entrenador") Id Entrenador:
+      input(type="text" name="id_entrenador" id="id_entrenador" value=sesion.id_entrenador required)
+    div
+      button(type='submit') Editar
+    a(href="/sesiones") Volver a la lista de sesiones

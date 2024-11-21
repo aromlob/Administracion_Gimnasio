@@ -1,0 +1,25 @@
+extends ../templates/layout
+
+block content
+    div.container.mt-5.mb-4
+        h1.text-center.text-danger.mb-4 Confirmar Eliminación
+
+        p.text-center.text-danger.mb-4
+            | ¿Estás seguro de que deseas eliminar este plan de membresía?
+        
+        form(action=`/planesMembresias/delete/${plan_membresia.id}` method="POST" class="bg-light p-4 rounded shadow-sm")
+            div.mb-3
+                label(for="nombre_plan" class="form-label") Nombre:
+                input(type="text" name="nombre_plan" id="nombre_plan" class="form-control" value=plan_membresia.nombre_plan readonly="readonly" required)
+
+            div.mb-3
+                label(for="precio" class="form-label") Precio:
+                input(type="text" name="precio" id="precio" class="form-control" value=plan_membresia.precio readonly="readonly" required)
+
+            div.mb-3
+                label(for="duracion_meses" class="form-label") Duración de meses:
+                input(type="text" name="duracion_meses" id="duracion_meses" class="form-control" value=plan_membresia.duracion_meses readonly="readonly" required)
+
+            div.text-center.mt-4.d-flex.justify-content-center
+                button(type="submit" class="btn btn-danger btn-lg me-2") Eliminar
+                a(href="/planesMembresias" class="btn btn-secondary btn-lg") Volver a la lista de planes

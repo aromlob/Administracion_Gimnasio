@@ -1,0 +1,23 @@
+extends ../templates/layout
+
+block content
+  h1 Clientes con Planes
+  table.table
+    thead
+      tr
+        th ID Cliente
+        th ID Plan
+        th Fecha de Inicio
+        th Editar 
+        th Eliminar
+    tbody
+      each cliente_plan in cliente_planes
+        tr
+          td= cliente_plan.id_cliente
+          td= cliente_plan.id_plan
+          td= cliente_plan.fecha_inicio
+          td
+            a(href=`/clientes_planes/edit/${cliente_plan.id}`) Editar
+          td
+            a(href=`/clientes_planes/delete/${cliente_plan.id}`) Eliminar
+  a(href="/clientes_planes/add") Agregar Nuevo Cliente-Plan

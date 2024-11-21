@@ -1,0 +1,24 @@
+extends templates/layout
+
+block content
+    .container 
+        h1.text-center.my-4 Login en el sistema
+        
+        form(action="/auth/login", method="post")
+            .mb-3
+                label.form-label(for="username") Nombre de Usuario
+                input.form-control(type="text", name="username", id="username", placeholder="Ingrese su nombre de usuario" required)
+            
+            .mb-3
+                label.form-label(for="password") Contraseña
+                .input-group
+                    input.form-control(type="password", name="password", id="password", placeholder="Ingrese su contraseña" required)
+                    button.btn.btn-outline-secondary#togglePassword(type="button")
+                        i.fas.fa-eye
+
+            .d-flex.justify-content-center.mt-3
+                button.btn.btn-primary(type="submit") Iniciar sesión
+
+        p.text-center.mt-4
+            | ¿Sin cuenta? 
+            a(href="/auth/register") Regístrese aquí.

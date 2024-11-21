@@ -1,0 +1,30 @@
+extends ../templates/layout
+
+block content
+    div.container.mt-5
+        h3.text-center.text-primary.mb-4.shadow-sm.p-3.rounded-3.bg-light Listado de Planes de Membresía
+        div.table-responsive
+            table.table.table-hover.table-bordered.table-striped.align-middle
+                thead.table-dark
+                    tr
+                        th ID
+                        th Nombre
+                        th Duración (meses)
+                        th Precio
+                        th Editar
+                        th Eliminar
+
+                tbody
+                    each plan_membresia in planes
+                        tr
+                            td= plan_membresia.id
+                            td= plan_membresia.nombre_plan
+                            td= plan_membresia.duracion_meses
+                            td= plan_membresia.precio
+                            td.text-center
+                                a.btn.btn-warning.btn-sm(href=`/planesMembresias/edit/${plan_membresia.id}`) Editar
+                            td.text-center
+                                a.btn.btn-danger.btn-sm(href=`/planesMembresias/delete/${plan_membresia.id}`) Eliminar
+
+        div.text-center.mt-4.mb-4
+            a.btn.btn-primary.btn-lg(href="/planesMembresias/add") Agregar Nuevo Plan

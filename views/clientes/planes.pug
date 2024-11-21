@@ -1,0 +1,46 @@
+extends ../templates/layout
+
+block content
+    .container.mt-5
+        h1.text-center.mb-4 Planes del cliente #{clienteData.nombre}
+
+        // Formulario para seleccionar cliente
+        form(id="formularioCliente")
+            div.form-group.text-center.position-relative
+                label(for="cliente") Seleccionar Cliente
+                select(id="cliente" class="form-control mx-auto")
+                    each cliente in listaClientes
+                        if clienteData.id === cliente.id
+                            option(value=`${cliente.id}` selected)  #{cliente.nombre}
+                        else
+                            option(value=`${cliente.id}`)  #{cliente.nombre}
+                // Agregar el ícono de la flecha hacia abajo
+                i.fa-solid.fa-chevron-down.position-absolute(style="right: 15px; top: 50%; transform: translateY(-50%); pointer-events: none;")
+
+        // Tabla para mostrar los planes del cliente seleccionado
+        table.table.table-striped.mt-4
+            thead.table-dark
+                tr
+                    th.text-center ID Cliente
+                    th.text-center Nombre del Plan
+                    th.text-center Precio
+                    th.text-center Fecha de Inicio
+                    th.text-center Eliminar
+            tbody
+                each cliente in clientes
+                    tr
+                        td.text-center= cliente.id
+                        td.text-center= cliente.nombre_plan
+                        td.text-center= cliente.precio
+                        td.text-center= cliente.fecha_inicio
+                        td.text-center
+                            a.btn.btn-danger.btn-sm(href=`/clientes/${cliente.id}/planes/delete`) Eliminar
+
+        // Botón para volver a la lista de clientes
+        div.text-center.mt-4.mb-4
+            a.btn.btn-secondary.btn-lg.shadow-sm(href="/clientes")
+                i.fas.fa-arrow-left.me-2
+                | Volver a la lista de clientes
+
+    // Script externo para interacciones en los planes del cliente
+    script(src="/js/planes.js")
