@@ -2,7 +2,7 @@ extends ../templates/layout
 
 block content
 
-    div.container.mt-5
+    div.container.mt-5.mb-4
         h3.text-center.text-primary.mb-4 Asociar sesión al entrenador
 
         if sesiones.length > 0
@@ -22,7 +22,8 @@ block content
                     label(for="id_cliente" class="form-label") ID Cliente:
                     input(type="number" name="id_cliente" id="id_cliente" class="form-control" required)
                 div.text-center.mt-4
-                    button(type="submit" class="btn btn-primary btn-lg") Asociar
+                    button(type="submit" class="btn btn-primary btn-lg me-3") Asociar
+                    a(href="/entrenadores" class="btn btn-secondary btn-lg") Volver a la lista de entrenadores
 
         else
             div.alert.alert-warning.text-center.mt-4

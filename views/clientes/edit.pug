@@ -1,34 +1,39 @@
 extends ../templates/layout
 
 block content
-  .container.mt-4
-    h1.mb-4.text-primary Editar Cliente
-    form(action=`/clientes/edit/${cliente.id}` method="POST" class="needs-validation" novalidate)
+  .container.mt-5.mb-5
+    h1.text-center.text-primary.mb-4 Editar Cliente
+
+    form(action=`/clientes/edit/${cliente.id}` method="POST" class="bg-light p-4 rounded shadow-sm needs-validation" novalidate)
       div.mb-3
         label(for="nombre" class="form-label") Nombre:
         input.form-control(type="text" name="nombre" id="nombre" value=cliente.nombre placeholder="Ingrese el nombre completo" required)
+
       div.mb-3
         label(for="email" class="form-label") Email:
         input.form-control(type="email" name="email" id="email" value=cliente.email placeholder="ejemplo@correo.com" required)
+
       div.mb-3
         label(for="numero_telefono" class="form-label") Teléfono:
         input.form-control(type="tel" name="numero_telefono" id="numero_telefono" value=cliente.numero_telefono placeholder="1234567890" required)
-      div.d-flex.justify-content-between
-        button.btn.btn-primary(type="submit") Guardar Cambios
-        a.btn.btn-secondary(href="/clientes") Cancelar y Volver
 
-    // Validación de formulario en cliente (opcional)
-    script.
-      (function () {
-        'use strict'
-        const forms = document.querySelectorAll('.needs-validation')
-        Array.from(forms).forEach(function (form) {
-          form.addEventListener('submit', function (event) {
-            if (!form.checkValidity()) {
-              event.preventDefault()
-              event.stopPropagation()
-            }
-            form.classList.add('was-validated')
-          }, false)
-        })
-      })()
+      div.d-flex.justify-content-between.mt-4
+        button.btn.btn-primary.btn-lg(type="submit") Guardar Cambios
+        a.btn.btn-secondary.btn-lg(href="/clientes") Cancelar y Volver
+
+
+  // Validación de formulario en cliente (opcional)
+  script.
+    (function () {
+      'use strict'
+      const forms = document.querySelectorAll('.needs-validation')
+      Array.from(forms).forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+          form.classList.add('was-validated')
+        }, false)
+      })
+    })()

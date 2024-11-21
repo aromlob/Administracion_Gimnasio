@@ -1,22 +1,30 @@
 extends ../templates/layout
 
 block content
-  .container.mt-4
-    h1.mb-4.text-danger Confirmar Eliminación
-    p.text-danger ¿Estás seguro de que deseas eliminar este cliente? Esta acción no se puede deshacer.
-    form(action=`/clientes/delete/${cliente.id}` method="POST" class="needs-validation" novalidate)
+  .container.mt-4.mb-5
+    // Contenedor para el título y el mensaje centrado en la parte superior
+    .d-flex.flex-column.align-items-center.justify-content-center.text-center
+      h1.mb-4.text-danger Confirmar Eliminación
+      p.text-danger ¿Estás seguro de que deseas eliminar este cliente? Esta acción no se puede deshacer.
+    
+    // Formulario de eliminación de cliente
+    form(action=`/clientes/delete/${cliente.id}` method="POST" class="bg-light p-4 rounded shadow-sm needs-validation" novalidate)
       div.mb-3
         label(for="nombre" class="form-label") Nombre:
         input.form-control(type="text" name="nombre" id="nombre" value=cliente.nombre readonly required)
+
       div.mb-3
         label(for="email" class="form-label") Email:
         input.form-control(type="text" name="email" id="email" value=cliente.email readonly required)
+
       div.mb-3
         label(for="fecha_registro" class="form-label") Fecha de Registro:
         input.form-control(type="text" name="fecha_registro" id="fecha_registro" value=cliente.fecha_registro readonly required)
+
       div.mb-3
         label(for="numero_telefono" class="form-label") Número de Teléfono:
         input.form-control(type="text" name="numero_telefono" id="numero_telefono" value=cliente.numero_telefono readonly required)
+
       div.d-flex.justify-content-between
         button.btn.btn-danger(type="submit") Confirmar Eliminación
         a.btn.btn-secondary(href="/clientes") Cancelar y Volver
@@ -36,4 +44,3 @@ block content
           }, false)
         })
       })()
-

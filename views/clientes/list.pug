@@ -3,7 +3,8 @@ extends ../templates/layout
 block content
     div.container.mt-5
         h3.text-center.text-primary.mb-4.shadow-sm.bg-light.p-3.rounded-3 Listado de Clientes
-        div.table-responsive
+        
+        div.table-responsive.mb-5
             table.table.table-hover.table-bordered.table-striped.align-middle
                 thead.table-dark
                     tr
@@ -40,7 +41,8 @@ block content
                                 a.btn.btn-success.btn-sm(href=`/clientes/${cliente.id}/planes/add`)
                                     i.fas.fa-plus-circle.me-1
                                     |  Añadir planes
-        div.text-center.mt-4
+        
+        div.text-center.mt-4.mb-4
             a.btn.btn-primary.btn-lg.shadow-sm(href=`/clientes/add`)
                 i.fas.fa-user-plus.me-2 
                 |  Añadir Nuevo Cliente

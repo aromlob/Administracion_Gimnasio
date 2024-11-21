@@ -1,24 +1,42 @@
 extends ../templates/layout
 
 block content
-  h1.text-center.mb-4 Editar Plan de Membresía
-  
-  form(action=`/planesMembresias/edit/${plan_membresia.id}` method="POST" class="container")
-    .mb-3
-      label(for="nombre_plan" class="form-label") Nombre:
-      select(name="nombre_plan" id="nombre_plan" class="form-select" value=plan_membresia.nombre_plan required)
-        option(value="Básico Anual") Básico Anual
-        option(value="Premium Mensual") Premium Mensual
-        option(value="Elite Mensual") Elite Mensual
+  .container.mt-5.mb-5
+    h1.text-center.mb-4 Editar Plan de Membresía
 
-    .mb-3
-      label(for="precio" class="form-label") Precio:
-      input(type="number" name="precio" id="precio" class="form-control" value=plan_membresia.precio required)
+    form(action=`/planesMembresias/edit/${plan_membresia.id}` method="POST" class="bg-light p-4 rounded shadow-sm needs-validation" novalidate)
+      .mb-3
+        label(for="nombre_plan" class="form-label") Nombre:
+        select(name="nombre_plan" id="nombre_plan" class="form-select" required)
+          option(value="Básico Anual" selected=plan_membresia.nombre_plan === "Básico Anual") Básico Anual
+          option(value="Premium Mensual" selected=plan_membresia.nombre_plan === "Premium Mensual") Premium Mensual
+          option(value="Elite Mensual" selected=plan_membresia.nombre_plan === "Elite Mensual") Elite Mensual
 
-    .mb-3
-      label(for="duracion_meses" class="form-label") Duración de meses:
-      input(type="number" name="duracion_meses" id="duracion_meses" class="form-control" value=plan_membresia.duracion_meses required)
+      .mb-3
+        label(for="precio" class="form-label") Precio:
+        input(type="number" name="precio" id="precio" class="form-control" value=plan_membresia.precio required)
 
-    button(type="submit" class="btn btn-primary") Guardar Cambios
+      .mb-3
+        label(for="duracion_meses" class="form-label") Duración de meses:
+        input(type="number" name="duracion_meses" id="duracion_meses" class="form-control" value=plan_membresia.duracion_meses required)
 
-  a(href="/planesMembresias" class="btn btn-secondary mt-3") Volver a la lista de planes
+      // Contenedor con d-flex para alinear los botones y añadir margen abajo
+      .d-flex.justify-content-center.mt-3.mb-3
+        button(type="submit" class="btn btn-primary me-2") Guardar Cambios
+        a(href="/planesMembresias" class="btn btn-secondary") Volver a la lista de planes
+
+  // Validación de formulario (opcional)
+  script.
+    (function () {
+      'use strict'
+      const forms = document.querySelectorAll('.needs-validation')
+      Array.from(forms).forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+          form.classList.add('was-validated')
+        }, false)
+      })
+    })()

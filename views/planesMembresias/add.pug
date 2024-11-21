@@ -1,7 +1,7 @@
 extends ../templates/layout
 
 block content
-    div.container.mt-5
+    div.container.mt-5.mb-5
         h1.text-center.text-primary.mb-4 Agregar Plan de Membresía
 
         form(action="/planesMembresias/add" method="POST" class="bg-light p-4 rounded shadow-sm")
@@ -20,8 +20,6 @@ block content
                 label(for="duracion_meses" class="form-label") Duración de meses:
                 input(type="number" name="duracion_meses" id="duracion_meses" class="form-control" required)
 
-            div.text-center.mt-4
-                button(type="submit" class="btn btn-success btn-lg") Agregar Plan
-
-        div.text-center.mt-4
-            a(href="/planesMembresias" class="btn btn-secondary btn-lg") Volver a la lista de planes
+            div.text-center.mt-4.d-flex.justify-content-center
+                button(type="submit" class="btn btn-success btn-lg me-2") Agregar Plan
+                a(href="/planesMembresias" class="btn btn-secondary btn-lg") Volver a la lista de planes
