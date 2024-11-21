@@ -1,0 +1,18 @@
+/* Asegura que el html y el body ocupen el 100% de la altura */
+html, body {
+    height: 100%;  /* Establece la altura de html y body al 100% */
+    margin: 0;     /* Elimina márgenes predeterminados que puedan afectar el layout */
+  }
+  
+  /* Flexbox para body */
+  body {
+    display: flex;                /* Usamos flexbox para estructurar el layout */
+    flex-direction: column;       /* Los elementos hijos se apilan verticalmente */
+    font-family: Arial, sans-serif; /* Opcional, para definir una fuente */
+  }
+  
+  /* Hacer que el footer se mantenga al fondo */
+  footer {
+    margin-top: auto;  /* Esto empuja el footer hacia abajo */
+  }
+  

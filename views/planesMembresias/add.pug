@@ -1,19 +1,25 @@
 extends ../templates/layout
 
 block content
-  h1 Agregar Plan de Membresía
-  form(action="/planesMembresias/add" method="POST")
-    label(for="nombre_plan") Nombre:
-    select(name="nombre_plan" id="nombre_plan" required)
-      option(value="Básico Anual") Básico Anual
-      option(value="Premium Mensual") Premium Mensual
-      option(value="Elite Mensual") Elite Mensual
-    div
-      label(for="precio") Precio:
-      input(type="number" name="precio" id="precio" required)
-    div 
-      label(for="duracion_meses") Duracion de meses:
-      input(type="number" name="duracion_meses" id="duracion_meses" required)
-    div
-      button(type="submit") Agregar Plan
-  a(href="/planesMembresias") Volver a la lista de planes
+    div.container.mt-5.mb-5
+        h1.text-center.text-primary.mb-4 Agregar Plan de Membresía
+
+        form(action="/planesMembresias/add" method="POST" class="bg-light p-4 rounded shadow-sm")
+            div.mb-3
+                label(for="nombre_plan" class="form-label") Nombre:
+                select(name="nombre_plan" id="nombre_plan" class="form-select" required)
+                    option(value="Básico Anual") Básico Anual
+                    option(value="Premium Mensual") Premium Mensual
+                    option(value="Elite Mensual") Elite Mensual
+
+            div.mb-3
+                label(for="precio" class="form-label") Precio:
+                input(type="number" name="precio" id="precio" class="form-control" required)
+
+            div.mb-3
+                label(for="duracion_meses" class="form-label") Duración de meses:
+                input(type="number" name="duracion_meses" id="duracion_meses" class="form-control" required)
+
+            div.text-center.mt-4.d-flex.justify-content-center
+                button(type="submit" class="btn btn-success btn-lg me-2") Agregar Plan
+                a(href="/planesMembresias" class="btn btn-secondary btn-lg") Volver a la lista de planes

@@ -1,19 +1,23 @@
+extends templates/layout
+
 block content
   .container
     h1.text-center.my-4 Bienvenido a la Gestión de Clientes y Planes
 
     p.text-center.mb-4 Para empezar, selecciona una de las opciones a continuación:
 
-    .list-group
-      li.list-group-item
-        a(href="/clientes") Gestión de Clientes
-      li.list-group-item
-        a(href="/entrenadores") Gestión de Entrenadores
-      li.list-group-item
-        a(href="/planesMembresias") Gestión de Planes de Membresía
-      li.list-group-item
-        a(href="/clientes_planes") Gestión de Cliente-Planes
-      li.list-group-item
-        a(href="/sesiones") Sesiones
+    .d-flex.flex-column.align-items-center
+      .list-group.w-100(style="max-width: 500px;")
+        li.list-group-item
+          a(href="/clientes" class="btn btn-primary btn-lg btn-block my-3 shadow-lg") Gestión de Clientes
+        li.list-group-item
+          a(href="/entrenadores" class="btn btn-primary btn-lg btn-block my-3 shadow-lg") Gestión de Entrenadores
+        li.list-group-item
+          a(href="/planesMembresias" class="btn btn-primary btn-lg btn-block my-3 shadow-lg") Gestión de Planes de Membresía
+        li.list-group-item
+          a(href="/sesiones" class="btn btn-primary btn-lg btn-block my-3 shadow-lg") Sesiones
 
-    p.text-center.mt-4 Si necesitas ayuda, puedes consultar nuestra documentación o ponerte en contacto con el soporte.
+    p.text-center.mt-4
+      | Si necesitas ayuda, puedes consultar nuestra 
+      a(href="#" class="btn btn-link") documentación 
+      | o ponerte en contacto con el soporte.

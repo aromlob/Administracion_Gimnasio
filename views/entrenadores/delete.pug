@@ -1,17 +1,25 @@
 extends ../templates/layout
 
 block content
-  h1 Confirmar Eliminación
-  p ¿Estás seguro de que deseas eliminar este entrenador?
-  form(action=`/entrenadores/delete/${entrenador.id}` method="POST")
-    div
-      label(for="nombre") Nombre:
-      input(type="text" name="nombre" id="nombre" value=entrenador.nombre readonly="readonly" required)
-    div
-      label(for="especialidad") Especialidad:
-      input(type="text" name="especialidad" id="especialidad" value=entrenador.especialidad readonly="readonly" required)
-    div
-      label(for="nivel_experiencia") Nivel de experiencia:
-      input(type="text" name="nivel_experiencia" id="nivel_experiencia" value=entrenador.nivel_experiencia readonly="readonly" required)
-    button(type="submit") Eliminar
-  a(href="/entrenadores") Volver a la lista de entrenadores
+    div.container.mt-5.mb-4
+        h1.text-center.text-danger.mb-4 Confirmar Eliminación
+
+        p.text-center.text-danger.mb-4
+            | ¿Estás seguro de que deseas eliminar este entrenador?
+        
+        form(action=`/entrenadores/delete/${entrenador.id}` method="POST" class="bg-light p-4 rounded shadow-sm")
+            div.mb-3
+                label(for="nombre" class="form-label") Nombre:
+                input(type="text" name="nombre" id="nombre" class="form-control" value=entrenador.nombre readonly="readonly" required)
+
+            div.mb-3
+                label(for="especialidad" class="form-label") Especialidad:
+                input(type="text" name="especialidad" id="especialidad" class="form-control" value=entrenador.especialidad readonly="readonly" required)
+
+            div.mb-3
+                label(for="nivel_experiencia" class="form-label") Nivel de experiencia:
+                input(type="text" name="nivel_experiencia" id="nivel_experiencia" class="form-control" value=entrenador.nivel_experiencia readonly="readonly" required)
+
+            div.text-center.mt-4.d-flex.justify-content-center
+                button(type="submit" class="btn btn-danger btn-lg me-2") Eliminar
+                a(href="/entrenadores" class="btn btn-secondary btn-lg") Volver a la lista de entrenadores
