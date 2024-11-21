@@ -1,30 +1,38 @@
 extends ../templates/layout
 
 block content
-    h1 Sesiones del entrenador #{entrenadorData.nombre}
-    form(id="formularioEntrenador") 
-        select(id="entrenador")
-            each entrenador in listaEntrenadores
-                if entrenadorData.id === entrenador.id
-                    option(value=`${entrenador.id}` selected)  #{entrenador.nombre}
-                else
-                    option(value=`${entrenador.id}`)  #{entrenador.nombre}
-    table.table
-        thead
-            tr
-                th ID Sesion
-                th Fecha inicio
-                th Hora inicio
-                th Duracion min
-                th Eliminar
-        tbody
-            each sesion in sesiones
-                tr
-                    td= sesion.id
-                    td= sesion.fecha_inicio
-                    td= sesion.hora_inicio
-                    td= sesion.duracion_min
-                    td 
-                        a(href=`/entrenadores/${entrenadorData.id}/sesiones/delete/${sesion.id}`) Eliminar
+    div.container.mt-5
+        h1.text-center.mb-4 Sesiones del entrenador #{entrenadorData.nombre}
 
-    script(src="/js/sesiones.js")
+        form(id="formularioEntrenador")
+            div.form-group.position-relative
+                select(id="entrenador" class="form-control")
+                    each entrenador in listaEntrenadores
+                        if entrenadorData.id === entrenador.id
+                            option(value=`${entrenador.id}` selected) #{entrenador.nombre}
+                        else
+                            option(value=`${entrenador.id}`) #{entrenador.nombre}
+                i.fa-solid.fa-chevron-down.position-absolute(style="right: 15px; top: 50%; transform: translateY(-50%); pointer-events: none;")
+        
+        table.table.table-hover.table-bordered.table-striped.mt-4
+            thead.table-dark
+                tr
+                    th.text-center ID Sesion
+                    th.text-center Fecha inicio
+                    th.text-center Hora inicio
+                    th.text-center Duracion min
+                    th.text-center Eliminar
+            tbody
+                each sesion in sesiones
+                    tr
+                        td.text-center= sesion.id
+                        td.text-center= sesion.fecha_inicio
+                        td.text-center= sesion.hora_inicio
+                        td.text-center= sesion.duracion_min
+                        td.text-center
+                            a(href=`/entrenadores/${entrenadorData.id}/sesiones/delete/${sesion.id}` class="btn btn-danger btn-sm") Eliminar
+        
+        div.text-center.mt-4.mb-4 
+            a(href="/entrenadores" class="btn btn-secondary btn-lg") Volver a la lista de entrenadores
+
+        script(src="/js/sesiones.js")

@@ -1,16 +1,39 @@
 extends templates/layout
 
 block content
-    .container 
-        h1 Alta en el sistema
-
-        form.row.g-3(action="/auth/register", method="post") 
-
+    .container.mt-5.mb-5
+        .row.justify-content-center
             .col-md-6
-                label.form-label(for="username") Usuario
-                input.form-control(type="text", name="username", id="username", required)
-                label.form-label(for="password") Contraseña
-                input.form-control(type="password", name="password" id="password", required)
-                br
-            .col-12
-            button.btn.btn-success(type="submit") Sign up!
+                .card.shadow-lg
+                    .card-header.bg-success.text-white.text-center
+                        h3.text-white
+                            i.fas.fa-user-plus.me-2
+                            | Alta en el sistema
+                    .card-body
+                        form(action="/auth/register", method="post") 
+                            .mb-3
+                                label.form-label(for="username") 
+                                    i.fas.fa-user.me-2
+                                    | Nombre de Usuario
+                                input.form-control(type="text", name="username", id="username", placeholder="Ingrese su nombre de usuario" required)
+
+                            .mb-3
+                                label.form-label(for="password") 
+                                    i.fas.fa-lock.me-2
+                                    | Contraseña
+                                .input-group
+                                    input.form-control(type="password", name="password", id="password", placeholder="Ingrese su contraseña" required)
+                                    button.btn.btn-outline-secondary#togglePassword(type="button")
+                                        i.fas.fa-eye
+
+                            div.text-center.mt-4
+                                button.btn.btn-success.btn-lg(type="submit") 
+                                    i.fas.fa-user-plus.me-2
+                                    | Registrarse
+
+                    .text-center.mt-3
+                        p.mb-0 ¿Ya tienes cuenta? 
+                            a(href="/auth/login" class="text-primary fw-bold") Inicia sesión aquí.
+
+                    .card-footer.text-center.text-muted
+                        small | Asegúrese de que sus credenciales sean correctas

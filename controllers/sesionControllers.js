@@ -1,3 +1,4 @@
+// Importa el módulo de base de datos para realizar consultas
 const db = require('../db');
 
 /**
@@ -7,10 +8,10 @@ const db = require('../db');
  */
 exports.sesion = (req, res) => {
     db.query(
-        'SELECT * FROM sesion',
+        'SELECT * FROM sesion', // Consulta todos los registros de la tabla 'sesion'
         (err, response) => {
-            if (err) res.send('Error al buscar las sesiones');
-            else res.render('sesiones/list', { sesiones: response});
+            if (err) res.send('Error al buscar las sesiones'); // Si ocurre un error, muestra un mensaje
+            else res.render('sesiones/list', { sesiones: response }); // Si no hay errores, renderiza la vista con la lista de sesiones
         }
     );
 };
@@ -21,7 +22,7 @@ exports.sesion = (req, res) => {
  * @param {*} res -> El objeto de respuesta de Express.
  */
 exports.sesionAddFormulario = (req, res) => {
-    res.render('sesiones/add');
+    res.render('sesiones/add'); // Muestra el formulario para agregar una nueva sesión
 };
 
 /**
@@ -30,14 +31,15 @@ exports.sesionAddFormulario = (req, res) => {
  * @param {*} res -> El objeto de respuesta de Express.
  */
 exports.sesionAdd = (req, res) => {
+    // Extrae los valores del cuerpo de la solicitud
     const { fecha_inicio, hora_inicio, duracion_min, id_cliente, id_entrenador } = req.body;
 
     db.query(
-        'INSERT INTO sesion (fecha_inicio, hora_inicio, duracion_min, id_cliente, id_entrenador) VALUES (?, ?, ?, ?, ?)',
-        [fecha_inicio, hora_inicio, duracion_min, id_cliente, id_entrenador],
+        'INSERT INTO sesion (fecha_inicio, hora_inicio, duracion_min, id_cliente, id_entrenador) VALUES (?, ?, ?, ?, ?)', 
+        [fecha_inicio, hora_inicio, duracion_min, id_cliente, id_entrenador], // Inserta una nueva sesión en la base de datos
         (error) => {
-            if (error) res.send('Error insertando sesión: ' + error.message);
-            else res.redirect('/sesiones');
+            if (error) res.send('Error insertando sesión: ' + error.message); // Muestra el error si ocurre
+            else res.redirect('/sesiones'); // Redirige a la lista de sesiones después de agregarla
         }
     );
 };
@@ -48,19 +50,20 @@ exports.sesionAdd = (req, res) => {
  * @param {*} res -> El objeto de respuesta de Express.
  */
 exports.sesionDeleteFormulario = (req, res) => {
-    const { id } = req.params;
-    if (isNaN(id)) res.send('Parámetros incorrectos');
+    const { id } = req.params; // Obtiene el ID de la sesión a eliminar
+
+    if (isNaN(id)) res.send('Parámetros incorrectos'); // Si el ID no es un número, muestra un mensaje de error
     else {
         db.query(
-            'SELECT * FROM sesion WHERE id=?',
+            'SELECT * FROM sesion WHERE id=?', // Consulta si existe una sesión con el ID proporcionado
             [id],
             (error, respuesta) => {
-                if (error) res.send('Error al intentar borrar la sesión');
+                if (error) res.send('Error al intentar borrar la sesión'); // Si ocurre un error, muestra un mensaje
                 else {
                     if (respuesta.length > 0) {
-                        res.render('sesiones/delete', { sesion: respuesta[0] });
+                        res.render('sesiones/delete', { sesion: respuesta[0] }); // Si la sesión existe, muestra el formulario de confirmación de eliminación
                     } else {
-                        res.send('Error al intentar borrar la sesión, no existe');
+                        res.send('Error al intentar borrar la sesión, no existe'); // Si no existe la sesión, muestra un mensaje
                     }
                 }
             }
@@ -74,17 +77,17 @@ exports.sesionDeleteFormulario = (req, res) => {
  * @param {*} res -> El objeto de respuesta de Express.
  */
 exports.sesionDel = (req, res) => {
-    const { id } = req.params;
+    const { id } = req.params; // Obtiene el ID de la sesión a eliminar
 
     if (isNaN(id)) {
-        res.send('Error borrando');
+        res.send('Error borrando'); // Si el ID no es válido, muestra un mensaje de error
     } else {
         db.query(
-            'DELETE FROM sesion WHERE id=?',
-            [id],
+            'DELETE FROM sesion WHERE id=?', 
+            [id], // Elimina la sesión con el ID proporcionado
             (error) => {
-                if (error) res.send('Error borrando sesión: ' + error.message);
-                else res.redirect('/sesiones');
+                if (error) res.send('Error borrando sesión: ' + error.message); // Si ocurre un error, muestra un mensaje
+                else res.redirect('/sesiones'); // Redirige a la lista de sesiones después de eliminarla
             }
         );
     }
@@ -96,20 +99,21 @@ exports.sesionDel = (req, res) => {
  * @param {*} res -> El objeto de respuesta de Express.
  */
 exports.sesionEditFormulario = (req, res) => {
-    const { id } = req.params;
-    if (isNaN(id)) res.send('Parámetros incorrectos');
+    const { id } = req.params; // Obtiene el ID de la sesión a editar
+
+    if (isNaN(id)) res.send('Parámetros incorrectos'); // Si el ID no es un número, muestra un mensaje de error
     else {
         db.query(
-            'SELECT * FROM sesion WHERE id=?',
-            [id],
+            'SELECT * FROM sesion WHERE id=?', 
+            [id], // Consulta si existe una sesión con el ID proporcionado
             (error, respuesta) => {
-                if (error){
-                    res.send('Error editando sesion')
-                }else {
+                if (error) {
+                    res.send('Error editando sesión'); // Si ocurre un error, muestra un mensaje
+                } else {
                     if (respuesta.length > 0) {
-                        res.render("sesiones/edit", { sesion: respuesta[0] });
+                        res.render("sesiones/edit", { sesion: respuesta[0] }); // Si la sesión existe, muestra el formulario para editarla
                     } else {
-                        res.send("Error al intentar actualizar el sesion, no existe");
+                        res.send("Error al intentar actualizar la sesión, no existe"); // Si no existe la sesión, muestra un mensaje
                     }
                 }
             }
@@ -123,22 +127,22 @@ exports.sesionEditFormulario = (req, res) => {
  * @param {*} res -> El objeto de respuesta de Express.
  */
 exports.sesionEdit = (req, res) => {
+    // Extrae los valores del cuerpo de la solicitud
     const { fecha_inicio, hora_inicio, duracion_min, id_cliente, id_entrenador } = req.body;
-    const { id } = req.params;
+    const { id } = req.params; // Obtiene el ID de la sesión a actualizar
 
     if (isNaN(id)) {
-        res.send('Error actualizando');
+        res.send('Error actualizando'); // Si el ID no es válido, muestra un mensaje de error
     } else {
         db.query(
-            'UPDATE sesion SET fecha_inicio = ?, hora_inicio = ?, duracion_min = ?, id_cliente = ?, id_entrenador = ? WHERE id = ?',
-            [fecha_inicio, hora_inicio, duracion_min, id_cliente, id_entrenador, id],
+            'UPDATE sesion SET fecha_inicio = ?, hora_inicio = ?, duracion_min = ?, id_cliente = ?, id_entrenador = ? WHERE id = ?', 
+            [fecha_inicio, hora_inicio, duracion_min, id_cliente, id_entrenador, id], // Actualiza los datos de la sesión en la base de datos
             (error) => {
                 if (error) {
-                    res.send('Error actualizando la sesión: ' + error.message);
-                    console.log(error);
-                } else res.redirect('/sesiones');
+                    res.send('Error actualizando la sesión: ' + error.message); // Si ocurre un error, muestra un mensaje
+                    console.log(error); // Registra el error en la consola para el desarrollador
+                } else res.redirect('/sesiones'); // Redirige a la lista de sesiones después de actualizarla
             }
         );
     }
 };
-
