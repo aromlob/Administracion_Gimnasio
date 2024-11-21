@@ -76,16 +76,32 @@ exports.clienteDel = (req, res) => {
     if (isNaN(id)) {
         res.send("Error borrando");
     } else {
+        // Primero eliminamos los registros relacionados en cliente_plan
         db.query(
-            `DELETE FROM cliente WHERE id=?`,
+            `DELETE FROM cliente_plan WHERE id_cliente = ?`,
             [id],
             (error) => {
-                if (error) res.send("Error borrando cliente: " + error.message);
-                else res.redirect("/clientes"); // Redirige a la lista de clientes tras la eliminación
+                if (error) {
+                    res.send("Error al borrar los planes asociados: " + error.message);
+                } else {
+                    // Ahora eliminamos el cliente
+                    db.query(
+                        `DELETE FROM cliente WHERE id=?`,
+                        [id],
+                        (error) => {
+                            if (error) {
+                                res.send("Error borrando cliente: " + error.message);
+                            } else {
+                                res.redirect("/clientes"); // Redirige a la lista de clientes tras la eliminación
+                            }
+                        }
+                    );
+                }
             }
         );
     }
 };
+
 
 /**
  * Muestra el formulario para editar un cliente.

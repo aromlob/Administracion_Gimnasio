@@ -30,9 +30,11 @@ block content
                         td.text-center= sesion.hora_inicio
                         td.text-center= sesion.duracion_min
                         td.text-center
-                            a(href=`/entrenadores/${entrenadorData.id}/sesiones/delete/${sesion.id}` class="btn btn-danger btn-sm") Eliminar
-        
+                            a.btn.btn-warning.btn-sm(href=`/entrenadores/${entrenadorData.id}/sesiones/delete/${sesion.id}` class="btn btn-danger btn-sm") Eliminar
+                                i.fas.fa-trash-alt.me-1
         div.text-center.mt-4.mb-4 
-            a(href="/entrenadores" class="btn btn-secondary btn-lg") Volver a la lista de entrenadores
+            a(href="/entrenadores" class="btn btn-secondary btn-lg") 
+                i.fas.fa-arrow-left.me-2
+                | Volver a la lista de entrenadores
 
         script(src="/js/sesiones.js")

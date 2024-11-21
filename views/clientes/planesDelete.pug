@@ -17,8 +17,12 @@ block content
                 
                 div.text-center.mt-4
                     button(type="submit" class="btn btn-danger btn-lg me-3") Confirmar Desasociación
-                    a(href=`/clientes/${clienteId}/planes` class="btn btn-secondary btn-lg") Volver a la lista de planes del cliente
+                    a(href=`/clientes/${clienteId}/planes` class="btn btn-secondary btn-lg") 
+                        i.fas.fa-arrow-left.me-2
+                        |Volver a la lista de planes del cliente
         else 
             p.text-center No hay planes disponibles para desasociar.
             div.text-center.mt-4.mb-4
-                a(href=`/clientes/${clienteId}/planes` class="btn btn-secondary btn-lg") Volver a la lista de planes del cliente
+                a(href=`/clientes/${clienteId}/planes` class="btn btn-secondary btn-lg") 
+                    i.fas.fa-arrow-left.me-2
+                    |Volver a la lista de planes del cliente
